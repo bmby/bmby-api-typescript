@@ -1,10 +1,12 @@
 {
   "name": "@bmby/bmby-api-typescript",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Typescript library for BMBY API",
-  "main": "./lib/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "gulp scripts"
+    "build": "gulp scripts",
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "repository": {
     "type": "git",

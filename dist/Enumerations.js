@@ -1,0 +1,158 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var CrmTaskPriority;
+(function (CrmTaskPriority) {
+    CrmTaskPriority[CrmTaskPriority["Unknown"] = 0] = "Unknown";
+    CrmTaskPriority[CrmTaskPriority["Normal"] = 1] = "Normal";
+    CrmTaskPriority[CrmTaskPriority["High"] = 2] = "High";
+    CrmTaskPriority[CrmTaskPriority["Medium"] = 3] = "Medium";
+    CrmTaskPriority[CrmTaskPriority["Tohandle"] = 4] = "Tohandle";
+})(CrmTaskPriority = exports.CrmTaskPriority || (exports.CrmTaskPriority = {}));
+var CrmTaskStatus;
+(function (CrmTaskStatus) {
+    CrmTaskStatus[CrmTaskStatus["Unknown"] = 0] = "Unknown";
+    CrmTaskStatus[CrmTaskStatus["New"] = 1] = "New";
+    CrmTaskStatus[CrmTaskStatus["Completed"] = 2] = "Completed";
+    CrmTaskStatus[CrmTaskStatus["Canceled"] = 3] = "Canceled";
+})(CrmTaskStatus = exports.CrmTaskStatus || (exports.CrmTaskStatus = {}));
+var CrmTaskSubType;
+(function (CrmTaskSubType) {
+    CrmTaskSubType[CrmTaskSubType["Unknown"] = 0] = "Unknown";
+    CrmTaskSubType[CrmTaskSubType["Incoming"] = 1] = "Incoming";
+    CrmTaskSubType[CrmTaskSubType["Outgoing"] = 2] = "Outgoing";
+    CrmTaskSubType[CrmTaskSubType["Hidden"] = 3] = "Hidden";
+})(CrmTaskSubType = exports.CrmTaskSubType || (exports.CrmTaskSubType = {}));
+var CrmTaskType;
+(function (CrmTaskType) {
+    CrmTaskType[CrmTaskType["Unknown"] = 0] = "Unknown";
+    CrmTaskType[CrmTaskType["Task"] = 1] = "Task";
+    CrmTaskType[CrmTaskType["Appointment"] = 2] = "Appointment";
+    CrmTaskType[CrmTaskType["Comment"] = 3] = "Comment";
+    CrmTaskType[CrmTaskType["Sms"] = 4] = "Sms";
+    CrmTaskType[CrmTaskType["Phone"] = 5] = "Phone";
+    CrmTaskType[CrmTaskType["Email"] = 6] = "Email";
+    CrmTaskType[CrmTaskType["DirectMailing"] = 7] = "DirectMailing";
+    CrmTaskType[CrmTaskType["ServiceRequest"] = 8] = "ServiceRequest";
+    CrmTaskType[CrmTaskType["MultiTask"] = 9] = "MultiTask";
+    CrmTaskType[CrmTaskType["Lead"] = 10] = "Lead";
+    CrmTaskType[CrmTaskType["ErrorRequest"] = 11] = "ErrorRequest";
+    CrmTaskType[CrmTaskType["LeadCopy"] = 12] = "LeadCopy";
+    CrmTaskType[CrmTaskType["AppointmentCopy"] = 13] = "AppointmentCopy";
+    CrmTaskType[CrmTaskType["TaskCopy"] = 14] = "TaskCopy";
+    CrmTaskType[CrmTaskType["SmsCopy"] = 15] = "SmsCopy";
+    CrmTaskType[CrmTaskType["PhoneCopy"] = 16] = "PhoneCopy";
+    CrmTaskType[CrmTaskType["EmailCopy"] = 17] = "EmailCopy";
+    CrmTaskType[CrmTaskType["CommentCopy"] = 18] = "CommentCopy";
+})(CrmTaskType = exports.CrmTaskType || (exports.CrmTaskType = {}));
+var CustomerReaction;
+(function (CustomerReaction) {
+    CustomerReaction[CustomerReaction["Unknown"] = 0] = "Unknown";
+    CustomerReaction[CustomerReaction["Likes"] = 1] = "Likes";
+    CustomerReaction[CustomerReaction["Dislikes"] = 2] = "Dislikes";
+    CustomerReaction[CustomerReaction["NotDecidedYet"] = 3] = "NotDecidedYet";
+})(CustomerReaction = exports.CustomerReaction || (exports.CustomerReaction = {}));
+var DealType;
+(function (DealType) {
+    DealType[DealType["Unknown"] = 0] = "Unknown";
+    DealType[DealType["Sale"] = 1] = "Sale";
+    DealType[DealType["Rent"] = 2] = "Rent";
+})(DealType = exports.DealType || (exports.DealType = {}));
+var FileAccess;
+(function (FileAccess) {
+    FileAccess[FileAccess["Unknown"] = 0] = "Unknown";
+    FileAccess[FileAccess["Public"] = 1] = "Public";
+    FileAccess[FileAccess["Private"] = 2] = "Private";
+})(FileAccess = exports.FileAccess || (exports.FileAccess = {}));
+var NotificationInterval;
+(function (NotificationInterval) {
+    NotificationInterval[NotificationInterval["Disabled"] = 0] = "Disabled";
+    NotificationInterval[NotificationInterval["Online"] = 1] = "Online";
+    NotificationInterval[NotificationInterval["Hourly"] = 2] = "Hourly";
+    NotificationInterval[NotificationInterval["Daily"] = 3] = "Daily";
+})(NotificationInterval = exports.NotificationInterval || (exports.NotificationInterval = {}));
+var NotificationScope;
+(function (NotificationScope) {
+    NotificationScope[NotificationScope["None"] = 0] = "None";
+    NotificationScope[NotificationScope["User"] = 1] = "User";
+    NotificationScope[NotificationScope["Project"] = 2] = "Project";
+})(NotificationScope = exports.NotificationScope || (exports.NotificationScope = {}));
+var PropertyCatalog;
+(function (PropertyCatalog) {
+    PropertyCatalog[PropertyCatalog["Unknown"] = 0] = "Unknown";
+    PropertyCatalog[PropertyCatalog["Repository"] = 1] = "Repository";
+    PropertyCatalog[PropertyCatalog["Agency"] = 2] = "Agency";
+})(PropertyCatalog = exports.PropertyCatalog || (exports.PropertyCatalog = {}));
+var PropertyType;
+(function (PropertyType) {
+    PropertyType[PropertyType["Unknown"] = 0] = "Unknown";
+    PropertyType[PropertyType["Apartment"] = 1] = "Apartment";
+    PropertyType[PropertyType["GardenApartment"] = 2] = "GardenApartment";
+    PropertyType[PropertyType["Duplex"] = 3] = "Duplex";
+    PropertyType[PropertyType["Single"] = 4] = "Single";
+    PropertyType[PropertyType["Villa"] = 5] = "Villa";
+    PropertyType[PropertyType["Triplex"] = 6] = "Triplex";
+    PropertyType[PropertyType["Penthouse"] = 7] = "Penthouse";
+    PropertyType[PropertyType["PlotOneFloor"] = 8] = "PlotOneFloor";
+    PropertyType[PropertyType["CommercialBuilding"] = 9] = "CommercialBuilding";
+    PropertyType[PropertyType["Office"] = 10] = "Office";
+    PropertyType[PropertyType["Storeroom"] = 12] = "Storeroom";
+    PropertyType[PropertyType["TwoFamilyCottage"] = 13] = "TwoFamilyCottage";
+    PropertyType[PropertyType["Parking"] = 14] = "Parking";
+    PropertyType[PropertyType["Studio"] = 15] = "Studio";
+    PropertyType[PropertyType["Cottage"] = 16] = "Cottage";
+    PropertyType[PropertyType["Shop"] = 17] = "Shop";
+    PropertyType[PropertyType["ResidentialBuilding"] = 18] = "ResidentialBuilding";
+    PropertyType[PropertyType["Farm"] = 19] = "Farm";
+    PropertyType[PropertyType["Business"] = 20] = "Business";
+    PropertyType[PropertyType["RooftopApartment"] = 22] = "RooftopApartment";
+    PropertyType[PropertyType["MiniPenthouse"] = 23] = "MiniPenthouse";
+    PropertyType[PropertyType["ResidentialUnit"] = 24] = "ResidentialUnit";
+    PropertyType[PropertyType["Caravan"] = 25] = "Caravan";
+    PropertyType[PropertyType["Loft"] = 26] = "Loft";
+    PropertyType[PropertyType["Parter"] = 27] = "Parter";
+    PropertyType[PropertyType["Hall"] = 28] = "Hall";
+    PropertyType[PropertyType["ApartmentToDivide"] = 29] = "ApartmentToDivide";
+    PropertyType[PropertyType["DistributedApartment"] = 30] = "DistributedApartment";
+    PropertyType[PropertyType["AgricultureLand"] = 31] = "AgricultureLand";
+    PropertyType[PropertyType["Clinic"] = 32] = "Clinic";
+    PropertyType[PropertyType["VacationApartment"] = 33] = "VacationApartment";
+    PropertyType[PropertyType["GroupOfAcquisition"] = 34] = "GroupOfAcquisition";
+    PropertyType[PropertyType["CommercialCenter"] = 34] = "CommercialCenter";
+    PropertyType[PropertyType["IndustrialBuilding"] = 38] = "IndustrialBuilding";
+    PropertyType[PropertyType["OfficesBuilding"] = 39] = "OfficesBuilding";
+    PropertyType[PropertyType["OfficesPlot"] = 40] = "OfficesPlot";
+    PropertyType[PropertyType["IndustrialPlot"] = 42] = "IndustrialPlot";
+    PropertyType[PropertyType["ParkingLot"] = 44] = "ParkingLot";
+    PropertyType[PropertyType["PlotSaturating"] = 45] = "PlotSaturating";
+    PropertyType[PropertyType["Hotel"] = 46] = "Hotel";
+    PropertyType[PropertyType["CommercialPlot"] = 47] = "CommercialPlot";
+    PropertyType[PropertyType["HotelPlot"] = 48] = "HotelPlot";
+    PropertyType[PropertyType["GeneralPlot"] = 49] = "GeneralPlot";
+    PropertyType[PropertyType["CommercialProperty"] = 50] = "CommercialProperty";
+    PropertyType[PropertyType["HomeForElderly"] = 51] = "HomeForElderly";
+    PropertyType[PropertyType["ShelteredHousing"] = 52] = "ShelteredHousing";
+    PropertyType[PropertyType["ClusterHousing"] = 53] = "ClusterHousing";
+    PropertyType[PropertyType["SpaceHeat"] = 54] = "SpaceHeat";
+    PropertyType[PropertyType["Ranches"] = 55] = "Ranches";
+})(PropertyType = exports.PropertyType || (exports.PropertyType = {}));
+var RealEstateMedia;
+(function (RealEstateMedia) {
+    RealEstateMedia[RealEstateMedia["Unknown"] = 0] = "Unknown";
+    RealEstateMedia[RealEstateMedia["Yad2"] = 1] = "Yad2";
+    RealEstateMedia[RealEstateMedia["WinWin"] = 2] = "WinWin";
+    RealEstateMedia[RealEstateMedia["Madas"] = 3] = "Madas";
+})(RealEstateMedia = exports.RealEstateMedia || (exports.RealEstateMedia = {}));
+var RoommateGender;
+(function (RoommateGender) {
+    RoommateGender[RoommateGender["Unknown"] = 0] = "Unknown";
+    RoommateGender[RoommateGender["Male"] = 1] = "Male";
+    RoommateGender[RoommateGender["Female"] = 2] = "Female";
+})(RoommateGender = exports.RoommateGender || (exports.RoommateGender = {}));
+var WindDirection;
+(function (WindDirection) {
+    WindDirection[WindDirection["Unknown"] = 0] = "Unknown";
+    WindDirection[WindDirection["North"] = 1] = "North";
+    WindDirection[WindDirection["South"] = 2] = "South";
+    WindDirection[WindDirection["East"] = 3] = "East";
+    WindDirection[WindDirection["West"] = 4] = "West";
+})(WindDirection = exports.WindDirection || (exports.WindDirection = {}));

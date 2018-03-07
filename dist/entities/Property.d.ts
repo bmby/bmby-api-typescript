@@ -1,0 +1,34 @@
+import { BmbyEntity } from "../index";
+import { PropertyCatalog, DealType, PropertyType } from "../Enumerations";
+import { Contact } from "./Contact";
+export declare class Property extends BmbyEntity {
+    constructor();
+    data: any;
+    readonly contact: Contact;
+    id: string;
+    agencyId: string;
+    bmbyProjectId: number;
+    contactId: string;
+    catalog: PropertyCatalog;
+    title: string;
+    description: string;
+    comments: string;
+    limitedDescription: string;
+    address: string;
+    propertyType: PropertyType;
+    dealType: DealType;
+    zoneId: number;
+    cityId: number;
+    neighbourhoodId: number;
+    streetId: number;
+    houseNumber: string;
+    floor: number;
+    floors: number;
+    rooms: number;
+    area: number;
+    plotArea: number;
+    rentPrice: number;
+    salePrice: number;
+    unitPrice: number;
+    entryDate: Date;
+}

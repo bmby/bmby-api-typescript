@@ -3,5 +3,4 @@
 /.idea
 /lib/**/*.js
 /.vscode
-/dist
 /lib/test.ts
