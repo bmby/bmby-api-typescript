@@ -1,6 +1,6 @@
 {
   "name": "@bmby/bmby-api-typescript",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Typescript library for BMBY API",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -25,8 +25,10 @@
   "devDependencies": {
     "@types/core-js": "^0.9.46",
     "@types/node": "^9.4.6",
+    "axios": "^0.16.2",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.4",
+    "karma-typescript": "^3.0.12",
     "typescript": "^2.7.2"
   },
   "dependencies": {}

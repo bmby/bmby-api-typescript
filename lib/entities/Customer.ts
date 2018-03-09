@@ -1,5 +1,5 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { Contact } from "../index";
+import { Contact } from "./Contact";
 
 export class Customer extends BmbyEntity {
     constructor() {

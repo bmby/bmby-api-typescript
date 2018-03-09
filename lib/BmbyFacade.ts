@@ -1,11 +1,9 @@
-import { 
-    IBmbyHttpClient, 
-    ILocalStorage, 
-    CustomerRest, 
-    PropertyRest, 
-    CrmTaskRest, 
-    IdentityRest
-} from "./index";
+import { IBmbyHttpClient } from './IBmbyHttpClient';
+import { ILocalStorage } from './ILocalStorage';
+import { CustomerRest } from './rest/CustomerRest';
+import { PropertyRest } from './rest/PropertyRest';
+import { CrmTaskRest } from './rest/CrmTaskRest';
+import { IdentityRest } from './rest/IdentityRest';
 
 export class BmbyFacade {
     private _identityRest: IdentityRest;
@@ -14,10 +12,10 @@ export class BmbyFacade {
     private _crmTaskRest: CrmTaskRest;
 
     constructor(private _httpClient: IBmbyHttpClient, private _localStore: ILocalStorage) {
-        this._identityRest = new IdentityRest(_httpClient);
-        this._customerRest = new CustomerRest(_httpClient);
-        this._propertyRest = new PropertyRest(_httpClient);
-        this._crmTaskRest = new CrmTaskRest(_httpClient);
+        this._identityRest = new IdentityRest(_httpClient, _localStore);
+        this._customerRest = new CustomerRest(_httpClient, _localStore);
+        this._propertyRest = new PropertyRest(_httpClient, _localStore);
+        this._crmTaskRest = new CrmTaskRest(_httpClient, _localStore);
     }
 
     get identityRest(): IdentityRest {

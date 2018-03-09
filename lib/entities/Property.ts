@@ -1,4 +1,4 @@
-import { BmbyEntity } from "../index";
+import { BmbyEntity } from "./BmbyEntity";
 import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection, PropertyType } from "../Enumerations";
 import { Contact } from "./Contact";
 

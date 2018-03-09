@@ -1,4 +1,4 @@
-import { BmbyEntity } from "../index";
+import { BmbyEntity } from "./BmbyEntity";
 
 export class User extends BmbyEntity {
     constructor() {

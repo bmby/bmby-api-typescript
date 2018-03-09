@@ -1,4 +1,5 @@
-import { BmbyEntity, Contact } from "../index";
+import { BmbyEntity } from "./BmbyEntity";
+import { Contact } from "./Contact";
 import { CrmTaskType, CrmTaskSubType, CrmTaskStatus, CrmTaskPriority } from "../Enumerations";
 
 export class CrmTask extends BmbyEntity {

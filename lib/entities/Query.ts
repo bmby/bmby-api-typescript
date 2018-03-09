@@ -1,4 +1,4 @@
-import { BmbyEntity } from "../index";
+import { BmbyEntity } from "./BmbyEntity";
 import { WindDirection, DealType, PropertyType } from "../Enumerations";
 
 export class Query extends BmbyEntity {
