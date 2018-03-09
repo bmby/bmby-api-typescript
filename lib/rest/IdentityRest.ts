@@ -1,10 +1,17 @@
 import { BmbyRest } from './BmbyRest';
-import { IBmbyHttpClient, BmbyHttpResponse, BmbyHttpResponseStatus } from '../IBmbyHttpClient';
+import { IBmbyHttpClient, BmbyHttpResponse, BmbyHttpResponseStatus, BmbyContentType } from '../IBmbyHttpClient';
 import { ILocalStorage } from '../ILocalStorage';
 
 export class IdentityRest extends BmbyRest {
     protected _endPoint = "https://identity.bmby.com";
     protected _tokenUri = "/connect/token"
+
+    isLoggedIn(): Promise<boolean> {
+
+        return new Promise<boolean>((resolve, reject) => {
+            reject(false);
+        });
+    }
 
     login(clientId: string, clientSecret: string, username: string, password: string): Promise<BmbyHttpResponse> {
         let data: any = {
@@ -18,7 +25,7 @@ export class IdentityRest extends BmbyRest {
             data['client_secret'] = clientSecret;
         }
 
-        let result = this.post(this._tokenUri, data, false, this.urlEncodedContentType);
+        let result = this.post(this._tokenUri, data, false, BmbyContentType.UrlEncoded);
         let _this = this;
 
         result.then(function(response: BmbyHttpResponse){
@@ -47,7 +54,7 @@ export class IdentityRest extends BmbyRest {
             data['client_secret'] = clientSecret;
         }
 
-        let result = this.post(this._tokenUri, data, false, this.urlEncodedContentType);
+        let result = this.post(this._tokenUri, data, false, BmbyContentType.UrlEncoded);
         let _this = this;
 
         result.then(function(response: BmbyHttpResponse){

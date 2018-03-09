@@ -4,18 +4,21 @@ import { CustomerRest } from './rest/CustomerRest';
 import { PropertyRest } from './rest/PropertyRest';
 import { CrmTaskRest } from './rest/CrmTaskRest';
 import { IdentityRest } from './rest/IdentityRest';
+import { QueryRest } from './rest/QueryRest';
 
 export class BmbyFacade {
     private _identityRest: IdentityRest;
     private _customerRest: CustomerRest;
     private _propertyRest: PropertyRest;
     private _crmTaskRest: CrmTaskRest;
+    private _queryRest: QueryRest;
 
     constructor(private _httpClient: IBmbyHttpClient, private _localStore: ILocalStorage) {
         this._identityRest = new IdentityRest(_httpClient, _localStore);
         this._customerRest = new CustomerRest(_httpClient, _localStore);
         this._propertyRest = new PropertyRest(_httpClient, _localStore);
         this._crmTaskRest = new CrmTaskRest(_httpClient, _localStore);
+        this._queryRest = new QueryRest(_httpClient, _localStore);
     }
 
     get identityRest(): IdentityRest {
@@ -32,5 +35,9 @@ export class BmbyFacade {
 
     get crmTaskRest(): CrmTaskRest {
         return this._crmTaskRest;
+    }
+
+    get queryRest(): QueryRest {
+        return this._queryRest
     }
 }

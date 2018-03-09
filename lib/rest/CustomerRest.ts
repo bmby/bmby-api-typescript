@@ -2,6 +2,7 @@ import { BmbyRest } from './BmbyRest';
 import { Query } from '../entities/Query';
 import { Customer } from '../entities/Customer';
 import { Contact } from '../entities/Contact';
+import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
 
 export class CustomerRest extends BmbyRest {
@@ -10,6 +11,10 @@ export class CustomerRest extends BmbyRest {
     }
 
     listQueries(customerId: string): Promise<Array<Query>> {
+        return null;
+    }
+
+    listCrmTasks(customerId: string): Promise<Array<CrmTask>> {
         return null;
     }
 

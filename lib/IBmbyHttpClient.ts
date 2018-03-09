@@ -1,3 +1,8 @@
+export enum BmbyContentType {
+    UrlEncoded = 0,
+    Json
+}
+
 export enum BmbyHttpMethod {
     Get = 0,
     Post,
@@ -31,5 +36,6 @@ export class BmbyHttpResponse {
 }
 
 export interface IBmbyHttpClient {
+    urlEncode(data: Object): any;
     request(url: string, method: BmbyHttpMethod, headers: any, content?: any): Promise<BmbyHttpResponse>;
 }

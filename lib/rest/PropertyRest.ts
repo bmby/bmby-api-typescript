@@ -1,6 +1,7 @@
 import { BmbyRest } from './BmbyRest';
 import { Property } from '../entities/Property';
 import { Contact } from '../entities/Contact';
+import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
 
 export class PropertyRest extends BmbyRest {
@@ -13,6 +14,10 @@ export class PropertyRest extends BmbyRest {
     }
 
     updateProperty(crmTask: Property): Promise<BmbyHttpResponse> {
+        return null;
+    }
+
+    listCrmTasks(propertyId: string): Promise<Array<CrmTask>> {
         return null;
     }
 
