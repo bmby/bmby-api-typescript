@@ -3,3 +3,4 @@ export * from './CustomerRest';
 export * from './IdentityRest';
 export * from './PropertyRest';
 export * from './QueryRest';
+export * from './LocalizationRest';

@@ -1,8 +1,40 @@
 import { BmbyEntity } from "./BmbyEntity";
 import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection, PropertyType } from "../Enumerations";
 import { Contact } from "./Contact";
+import { ListItem } from "./ListItem";
+import { Image } from "./Image";
 
 export class Property extends BmbyEntity {
+    private _options = {
+        'has_air_conditioner': false,
+        'has_window_bars': false,
+        'has_parking': false,
+        'has_furniture': false,
+        'has_religion_facility': false,
+        'can_be_extended': false,
+        'has_swimming_pool': false,
+        'has_jacuzzi': false,
+        'has_pandoor': false,
+        'has_gym': false,
+        'has_yard': false,
+        'has_parent_bedroom': false,
+        'has_event_room': false,
+        'has_storage': false,
+        'has_cellar': false,
+        'has_elevator': false,
+        'has_shabat_elevator': false,
+        'has_secure_room': false,
+        'has_guard': false,
+        'has_separate_entrance': false,
+        'is_unit': false,
+        'has_balcony': false,
+        'has_teracce': false,
+        'has_access_for_disabled': false,
+        'has_garden': false,
+        'has_panorama': false,
+        'on_columns': false,
+    }
+
     constructor() {
         super();
 
@@ -80,7 +112,8 @@ export class Property extends BmbyEntity {
             'wind_direction': WindDirection.Unknown,
             'creation_time': 0,
             'last_update_time': 0,
-            'external_images': []
+            'external_images': [],
+            'images': []
         }
     }
 
@@ -97,8 +130,25 @@ export class Property extends BmbyEntity {
         if (this._data['contact'] != undefined && this._data['contact'] instanceof Contact) {
             this._data['contact'] = this._data['contact'].data;
         }
+        
+        for (let key in this._options) {
+            this._data[key] = this._options[key];
+        }
 
         return this._data;
+    }
+
+    get images(): Array<Image> {
+        let imagesArr = new Array<Image>();
+        
+        for (let i in this._data['images']) {
+            let image = new Image();
+            image.data = this._data['images'][i];
+
+            imagesArr.push(image);
+        }
+
+        return imagesArr;
     }
 
     get contact(): Contact {
@@ -289,5 +339,25 @@ export class Property extends BmbyEntity {
     }
     set entryDate(value: Date) {
         this._data['entry_date'] = value;
+    }
+
+    getOptions(dictionary?: any, icons?: any): Array<ListItem> {
+        let options = new Array<ListItem>();
+        
+        for (let key in this._options) {
+            let optionData = {
+                'key': key,
+                'display_name': dictionary != undefined && dictionary[key] != undefined ? dictionary[key] : key,
+                'tags': '',
+                'icon': icons != undefined && icons[key] != undefined ? icons[key] : '',
+                'selected': this._options[key]
+            }
+        }
+
+        return options;
+    }
+
+    setOptionValue(option: string, value: boolean): void {
+        this._options[option] = value
     }
 }

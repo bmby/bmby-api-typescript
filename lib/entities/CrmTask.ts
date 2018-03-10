@@ -1,6 +1,7 @@
 import { BmbyEntity } from "./BmbyEntity";
 import { Contact } from "./Contact";
 import { CrmTaskType, CrmTaskSubType, CrmTaskStatus, CrmTaskPriority } from "../Enumerations";
+import { User } from "./User";
 
 export class CrmTask extends BmbyEntity {
     constructor() {
@@ -24,6 +25,7 @@ export class CrmTask extends BmbyEntity {
             'meeting_end_date': null,
             'task_date': null,
             'voice_recording_url': '',
+            'user': null,
             'participants': []
         }
     }
@@ -96,6 +98,16 @@ export class CrmTask extends BmbyEntity {
     }
     set taskDate(value: Date) {
         this._data['task_date'] = value
+    }
+    
+    get user(): User {
+        let user = new User();
+        user.data = this._data['user'];
+
+        return user
+    }
+    set user(user: User) {
+        this._data['user'] = user.data;
     }
 
     get participants(): Array<Contact> {

@@ -2,6 +2,7 @@ import { BmbyRest } from './BmbyRest';
 import { CrmTask } from '../entities/CrmTask';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
+import { BmbyContentType, BmbyHttpResponseStatus } from '../index';
 
 export class CrmTaskRest extends BmbyRest {
     listTasks(params: any): Promise<Array<CrmTask>> {
@@ -21,21 +22,21 @@ export class CrmTaskRest extends BmbyRest {
 
                     resolve(crmTasks);
                 } catch(ex) {
-                    reject(null);
+                    reject(response);
                 }
             })
             .catch(function(response){
-                reject(null);
+                reject(response);
             });
         });
     }
 
     insertTask(crmTask: CrmTask): Promise<BmbyHttpResponse> {
-        return null;
+        return this.post("/crmtasks", crmTask.data, true, BmbyContentType.Json);
     }
 
     updateTask(crmTask: CrmTask): Promise<BmbyHttpResponse> {
-        return null;
+        return this.put("/crmtasks", crmTask.data, true);
     }
 
     getTask(crmTaskId: string): Promise<CrmTask> {
@@ -50,11 +51,11 @@ export class CrmTaskRest extends BmbyRest {
 
                     resolve(crmTask);
                 } catch(ex) {
-                    reject(null);
+                    reject(response);
                 }
             })
             .catch(function(response){
-                reject(null);
+                reject(response);
             });
         });
     }
@@ -76,11 +77,11 @@ export class CrmTaskRest extends BmbyRest {
 
                     resolve(contacts);
                 } catch(ex) {
-                    reject(null);
+                    reject(response);
                 }
             })
             .catch(function(response){
-                reject(null);
+                reject(response);
             });
         });
     }

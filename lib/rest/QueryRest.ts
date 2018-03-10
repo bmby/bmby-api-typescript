@@ -2,30 +2,91 @@ import { BmbyRest } from './BmbyRest';
 import { Query } from '../entities/Query';
 import { Property } from '../entities/Property';
 import { Contact } from '../entities/Contact';
-import { BmbyHttpResponse } from '../IBmbyHttpClient';
+import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 
 export class QueryRest extends BmbyRest {
     listQueries(params: any): Promise<Array<Query>> {
-        return null;
+        let result = this.get("/queries", true);
+
+        return new Promise<Array<Query>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let queries = new Array<Query>();
+                    
+                    for (let i in response.data) {
+                        let query = new Query();
+                        query.data = response.data[i];
+                        queries.push(query);
+                    }
+
+                    resolve(queries);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
     }
 
     listMatchedProperties(queryId: string): Promise<Array<Property>> {
-        return null;
+        let result = this.get("/properties?queryId=" + queryId, true);
+
+        return new Promise<Array<Property>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let properties = new Array<Property>();
+                    
+                    for (let i in response.data) {
+                        let property = new Property();
+                        property.data = response.data[i];
+                        properties.push(property);
+                    }
+
+                    resolve(properties);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
     }
 
-    insertQuery(crmTask: Query): Promise<BmbyHttpResponse> {
-        return null;
+    insertQuery(query: Query): Promise<BmbyHttpResponse> {
+        return this.post("/queries", query.data, true, BmbyContentType.Json);
     }
 
-    updateQuery(crmTask: Query): Promise<BmbyHttpResponse> {
-        return null;
+    updateQuery(query: Query): Promise<BmbyHttpResponse> {
+        return this.put("/queries", query.data, true);
     }
 
-    getQuery(id: string): Promise<Query> {
-        return null;
+    getQuery(queryId: string): Promise<Query> {
+        let result = this.get("/queries/" + queryId, true);
+
+        return new Promise<Query>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let customer = new Query();
+                    customer.data = response.data;
+
+                    resolve(customer);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
     }
 
     setQueryStatus(queryId: string, isActive: boolean): Promise<BmbyHttpResponse> {
-        return null;
+        return this.patch("/queries/" + queryId, { is_active: true }, true);
     }
 }

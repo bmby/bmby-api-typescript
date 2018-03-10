@@ -34,8 +34,18 @@ export class Query extends BmbyEntity {
             'cities': [],
             'neighbourhoods': [],
             'streets': [],
-            'property_types': []
+            'property_types': [],
+            'matches': 0,
+            'creation_time': new Date()
         }
+    }
+
+    get matches(): number {
+        return this._data['matches'];
+    }
+
+    get creationTime(): Date {
+        return this._data['creation_time'];
     }
 
     get id(): string {

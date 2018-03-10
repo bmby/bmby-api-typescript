@@ -3,8 +3,10 @@ import { IBmbyHttpClient, BmbyHttpResponse, BmbyHttpResponseStatus, BmbyContentT
 import { ILocalStorage } from '../ILocalStorage';
 
 export class IdentityRest extends BmbyRest {
+    private _autorefreshing = false;
+
     protected _endPoint = "https://identity.bmby.com";
-    protected _tokenUri = "/connect/token"
+    protected _tokenUri = "/connect/token";
 
     isLoggedIn(): Promise<boolean> {
 
@@ -41,6 +43,32 @@ export class IdentityRest extends BmbyRest {
         });
 
         return result;
+    }
+
+    autoRefreshToken(clientId: string, clientSecret: string): void {
+        if (this._autorefreshing) {
+            return;
+        }
+
+        this._autorefreshing = true;
+        let _this = this;
+
+        // setInterval(function(){
+        //     let refreshToken = _this._storage.get(_this._refereshTokenField);
+
+        //     if (refreshToken == null) {
+        //         return;
+        //     }
+
+        //     _this.refereshToken(clientId, clientSecret, refreshToken)
+        //     .then(function(response: BmbyHttpResponse){
+        //         console.log(response.data)
+        //     })
+        //     .catch(function(response: BmbyHttpResponse){
+        //         console.log(response.data)
+        //     });
+
+        // }, 60000);
     }
 
     refereshToken(clientId: string, clientSecret: string, refereshToken: string): Promise<BmbyHttpResponse> {

@@ -4,7 +4,7 @@ export enum SortDirection {
 }
 
 export class QueryParams {
-    private _data: any = {
+    private _params: any = {
         'sortBy': '',
         'sortDirection': SortDirection[0].toLowerCase(),
         'page': 1,
@@ -12,16 +12,16 @@ export class QueryParams {
     }
 
     get sortBy(): string {
-        return this._data['sortBy'];
+        return this._params['sortBy'];
     }
     set sortBy(value: string) {
-        this._data['sortBy'] = value;
+        this._params['sortBy'] = value;
     }
 
     get sortDirection(): SortDirection {
-        return this._data['sortDirection'];
+        return this._params['sortDirection'];
     }
     set sortDirection(value: SortDirection) {
-        this._data['sortDirection'] = value;
+        this._params['sortDirection'] = SortDirection[value].toLowerCase();
     }
 }
