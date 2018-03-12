@@ -61,8 +61,12 @@ export abstract class BmbyRest {
         return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Put, headers);
     }
 
-    constructor(httpClient: IBmbyHttpClient, storage: ILocalStorage) {
+    constructor(httpClient: IBmbyHttpClient, storage: ILocalStorage, endPoint?: string) {
         this._httpClient = httpClient;
         this._storage = storage;
+
+        if (endPoint != undefined) {
+            this._endPoint = endPoint;
+        }
     }
 }

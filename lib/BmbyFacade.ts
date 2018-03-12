@@ -15,13 +15,13 @@ export class BmbyFacade {
     private _queryRest: QueryRest;
     private _localizationRest: LocalizationRest;
 
-    constructor(private _httpClient: IBmbyHttpClient, private _localStore: ILocalStorage) {
-        this._identityRest = new IdentityRest(_httpClient, _localStore);
-        this._customerRest = new CustomerRest(_httpClient, _localStore);
-        this._propertyRest = new PropertyRest(_httpClient, _localStore);
-        this._crmTaskRest = new CrmTaskRest(_httpClient, _localStore);
-        this._queryRest = new QueryRest(_httpClient, _localStore);
-        this._localizationRest = new LocalizationRest(_httpClient, _localStore);
+    constructor(private _httpClient: IBmbyHttpClient, private _localStore: ILocalStorage, endPoint?: string) {
+        this._identityRest = new IdentityRest(_httpClient, _localStore, endPoint);
+        this._customerRest = new CustomerRest(_httpClient, _localStore, endPoint);
+        this._propertyRest = new PropertyRest(_httpClient, _localStore, endPoint);
+        this._crmTaskRest = new CrmTaskRest(_httpClient, _localStore, endPoint);
+        this._queryRest = new QueryRest(_httpClient, _localStore, endPoint);
+        this._localizationRest = new LocalizationRest(_httpClient, _localStore, endPoint);
     }
 
     get identityRest(): IdentityRest {
