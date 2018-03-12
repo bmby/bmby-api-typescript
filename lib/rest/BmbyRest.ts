@@ -58,7 +58,7 @@ export abstract class BmbyRest {
 
     protected get(uri: string, authorize: boolean, params?: any): Promise<BmbyHttpResponse> {
         let headers = this.getHeaders(authorize);
-        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Put, headers);
+        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Get, headers);
     }
 
     constructor(httpClient: IBmbyHttpClient, storage: ILocalStorage, endPoint?: string) {

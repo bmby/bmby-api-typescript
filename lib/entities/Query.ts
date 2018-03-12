@@ -106,11 +106,11 @@ export class Query extends BmbyEntity {
     }
 
     get creationTime(): Date {
-        return this._data['creation_time'];
+        return new Date(this._data['creation_time']);
     }
 
     get lastUpdateTime(): Date {
-        return this._data['last_update_time'];
+        return new Date(this._data['last_update_time']);
     }
 
     get id(): string {
