@@ -13,7 +13,7 @@ export abstract class BmbyRest {
 
     protected _contentTypes: any = {
         "urlencoded": "application/x-www-form-urlencoded",
-        "json": "json"
+        "json": "application/json"
     }
 
     protected getHeaders(authorize: boolean, contentType?: BmbyContentType):any {
@@ -33,7 +33,7 @@ export abstract class BmbyRest {
 
     protected post(uri: string, data: any, authorize: boolean, contentType: BmbyContentType): Promise<BmbyHttpResponse> {
         let headers = this.getHeaders(authorize, contentType);
-        
+              
         if (contentType == BmbyContentType.UrlEncoded) {
             data = this._httpClient.urlEncode(data);
         }

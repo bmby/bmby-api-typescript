@@ -40,7 +40,6 @@ export class Query extends BmbyEntity {
         this._data = {
             'query_id': '',
             'user_id': 0,
-            'agency_id': 0,
             'min_rooms': null,
             'max_rooms': null,
             'min_floor': null,
@@ -80,7 +79,7 @@ export class Query extends BmbyEntity {
             'has_panorama': null,
             'on_columns': null,
     
-            'is_active': null,
+            'is_active': true,
 
             'deal_types': [],
 
@@ -125,13 +124,6 @@ export class Query extends BmbyEntity {
     }
     set userId(value: number) {
         this._data['user_id'] = value;
-    }
-
-    get agencyId(): string {
-        return this._data['agency_id'];
-    }
-    set agencyId(value: string) {
-        this._data['agency_id'] = value;
     }
 
     get minRooms(): number {

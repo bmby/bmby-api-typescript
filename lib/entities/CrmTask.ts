@@ -14,7 +14,6 @@ export class CrmTask extends BmbyEntity {
             'crm_task_bmby_id': 0,
             'task_type': CrmTaskType.Unknown,
             'task_sub_type': CrmTaskSubType.Unknown,
-            'agency_id': 0,
             'is_private': false,
             'subject': '',
             'message': '',
@@ -49,6 +48,20 @@ export class CrmTask extends BmbyEntity {
     }
     set customerId(value: string) {
         this._data['crm_task_id'] = value
+    }
+
+    get subject(): string {
+        return this._data['subject'];
+    }
+    set subject(value: string) {
+        this._data['subject'] = value
+    }
+
+    get message(): string {
+        return this._data['message'];
+    }
+    set message(value: string) {
+        this._data['message'] = value
     }
 
     get taskType(): CrmTaskType {
