@@ -53,7 +53,7 @@ export abstract class BmbyRest {
 
     protected delete(uri: string, authorize: boolean): Promise<BmbyHttpResponse> {
         let headers = this.getHeaders(authorize);
-        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Put, headers);
+        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Delete, headers);
     }
 
     protected get(uri: string, authorize: boolean, params?: any): Promise<BmbyHttpResponse> {
