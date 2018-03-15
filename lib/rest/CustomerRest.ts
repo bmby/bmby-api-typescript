@@ -4,10 +4,12 @@ import { Customer } from '../entities/Customer';
 import { Contact } from '../entities/Contact';
 import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
+import { QueryParams } from '../index';
 
 export class CustomerRest extends BmbyRest {
-    listCustomers(params: any): Promise<Array<Customer>> {
-        let result = this.get("/customers", true);
+    listCustomers(params: QueryParams): Promise<Array<Customer>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/customers" + queryString, true);
 
         return new Promise<Array<Customer>>((resolve, reject) => {
             result
@@ -32,8 +34,12 @@ export class CustomerRest extends BmbyRest {
         });
     }
 
-    listQueries(customerId: string): Promise<Array<Query>> {
-        let result = this.get("/queries?customerId=" + customerId, true);
+    listQueries(customerId: string, params?: QueryParams): Promise<Array<Query>> {
+        params = params != undefined ? params : new QueryParams();
+        params.customerId = customerId;
+        var queryString = params != null ? params.queryString() : "";
+
+        let result = this.get("/queries" + queryString, true);
 
         return new Promise<Array<Query>>((resolve, reject) => {
             result
@@ -58,8 +64,12 @@ export class CustomerRest extends BmbyRest {
         });
     }
 
-    listCrmTasks(customerId: string): Promise<Array<CrmTask>> {
-        let result = this.get("/crmtasks?customerId=" + customerId, true);
+    listCrmTasks(customerId: string, params?: QueryParams): Promise<Array<CrmTask>> {
+        params = params != undefined ? params : new QueryParams();
+        params.customerId = customerId;
+        var queryString = params != null ? params.queryString() : "";
+
+        let result = this.get("/crmtasks" + queryString, true);
 
         return new Promise<Array<CrmTask>>((resolve, reject) => {
             result

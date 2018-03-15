@@ -3,10 +3,12 @@ import { Query } from '../entities/Query';
 import { Property } from '../entities/Property';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
+import { QueryParams } from '../index';
 
 export class QueryRest extends BmbyRest {
-    listQueries(params: any): Promise<Array<Query>> {
-        let result = this.get("/queries", true);
+    listQueries(params: QueryParams): Promise<Array<Query>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/queries" + queryString, true);
 
         return new Promise<Array<Query>>((resolve, reject) => {
             result
@@ -84,6 +86,10 @@ export class QueryRest extends BmbyRest {
                 reject(response);
             });
         });
+    }
+
+    deleteQuery(queryId: string): Promise<BmbyHttpResponse> {
+        return this.delete("/queries/" + queryId, true);
     }
 
     setQueryStatus(queryId: string, isActive: boolean): Promise<BmbyHttpResponse> {

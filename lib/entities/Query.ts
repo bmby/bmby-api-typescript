@@ -49,7 +49,6 @@ export class Query extends BmbyEntity {
             'min_area': null,
             'max_area': null,
             'wind_direction': WindDirection.Unknown,
-            
             'is_new_building': null,
             'has_air_conditioner': null,
             'has_window_bars': null,
@@ -98,6 +97,12 @@ export class Query extends BmbyEntity {
             'creation_time': new Date(),
             'last_update_time': new Date()
         }
+    }
+    
+    set data(value: any) {
+        this._data = value;
+
+        this._data['wind_direction'] = WindDirection[this._data['wind_direction']];        
     }
 
     get matches(): number {

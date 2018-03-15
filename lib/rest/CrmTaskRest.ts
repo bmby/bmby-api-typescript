@@ -2,11 +2,12 @@ import { BmbyRest } from './BmbyRest';
 import { CrmTask } from '../entities/CrmTask';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
-import { BmbyContentType, BmbyHttpResponseStatus } from '../index';
+import { BmbyContentType, BmbyHttpResponseStatus, QueryParams } from '../index';
 
 export class CrmTaskRest extends BmbyRest {
-    listTasks(params: any): Promise<Array<CrmTask>> {
-        let result = this.get("/crmtasks", true);
+    listTasks(params: QueryParams): Promise<Array<CrmTask>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/crmtasks" + queryString, true);
 
         return new Promise<Array<CrmTask>>((resolve, reject) => {
             result
@@ -37,6 +38,10 @@ export class CrmTaskRest extends BmbyRest {
 
     updateTask(crmTask: CrmTask): Promise<BmbyHttpResponse> {
         return this.put("/crmtasks", crmTask.data, true);
+    }
+
+    deleteTask(crmTaskId: string): Promise<BmbyHttpResponse> {
+        return this.delete("/crmtasks/" + crmTaskId, true);
     }
 
     getTask(crmTaskId: string): Promise<CrmTask> {
