@@ -18,6 +18,8 @@ export class CrmTask extends BmbyEntity {
             'subject': '',
             'message': '',
             'location': '',
+            'location_lat': 0,
+            'location_lon': 0,
             'status': CrmTaskStatus.Unknown,
             'priority': CrmTaskPriority.Unknown,
             'meeting_start_date': null,
@@ -43,6 +45,27 @@ export class CrmTask extends BmbyEntity {
     }
     set id(value: string) {
         this._data['crm_task_id'] = value
+    }
+
+    get location(): string {
+        return this._data['location'];
+    }
+    set location(value: string) {
+        this._data['location'] = value
+    }
+
+    get locationLat(): number {
+        return this._data['location_lat'];
+    }
+    set locationLat(value: number) {
+        this._data['location_lat'] = value
+    }
+
+    get locationLon(): number {
+        return this._data['location_lon'];
+    }
+    set locationLon(value: number) {
+        this._data['location_lon'] = value
     }
 
     get propertyId(): string {

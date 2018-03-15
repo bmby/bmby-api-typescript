@@ -350,7 +350,7 @@ export class Property extends BmbyEntity {
                 'display_name': dictionary != undefined && dictionary[key] != undefined ? dictionary[key] : key,
                 'tags': '',
                 'icon': icons != undefined && icons[key] != undefined ? icons[key] : '',
-                'selected': this._options[key]
+                'selected': this._data[key]
             }
         }
 
@@ -358,6 +358,6 @@ export class Property extends BmbyEntity {
     }
 
     setOptionValue(option: string, value: boolean): void {
-        this._options[option] = value
+        this._data[option] = value
     }
 }
