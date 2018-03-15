@@ -95,10 +95,10 @@ export class CrmTask extends BmbyEntity {
     }
 
     get priority(): CrmTaskPriority {
-        return this._data['status'];
+        return this._data['priority'];
     }
     set priority(value: CrmTaskPriority) {
-        this._data['status'] = value
+        this._data['priority'] = value
     }
 
     get meetingStartDate(): Date {
