@@ -39,6 +39,9 @@ export class CrmTask extends BmbyEntity {
         this._data['status'] = CrmTaskStatus[this._data['status']];
         this._data['priority'] = CrmTaskPriority[this._data['priority']];
     }
+    get data(): any {
+        return this._data;
+    }
 
     get id(): string {
         return this._data['crm_task_id'];

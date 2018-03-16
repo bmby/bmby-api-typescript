@@ -39,7 +39,6 @@ export class Query extends BmbyEntity {
 
         this._data = {
             'query_id': '',
-            'user_id': 0,
             'min_rooms': null,
             'max_rooms': null,
             'min_floor': null,
@@ -104,6 +103,9 @@ export class Query extends BmbyEntity {
 
         this._data['wind_direction'] = WindDirection[this._data['wind_direction']];        
     }
+    get data(): any {
+        return this._data;
+    }
 
     get matches(): number {
         return this._data['matches'];
@@ -122,13 +124,6 @@ export class Query extends BmbyEntity {
     }
     set id(value: string) {
         this._data['query_id'] = value;
-    }
-
-    get userId(): number {
-        return this._data['user_id'];
-    }
-    set userId(value: number) {
-        this._data['user_id'] = value;
     }
 
     get minRooms(): number {
