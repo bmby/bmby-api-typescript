@@ -2,32 +2,41 @@ import { BmbyEntity } from "./BmbyEntity";
 import { Contact } from "./Contact";
 
 export class Customer extends BmbyEntity {
+    private _contact: Contact;
+
     constructor() {
         super();
 
+        this._contact = new Contact();
+
         this._data = {
             'customer_id': '',
-            'contact': null
+            'contact': this._contact.data
         }
+    }
+
+    get data(): any {
+        this._data['contact'] = this._contact.data;
+
+        return this._data;
+    }
+
+    set data(value: any) {
+        if (value['contact'] == undefined || value['contact'] == null) {
+            this._contact = new Contact();
+            value['contact'] = this._contact.data;
+        } else {
+            this._contact.data = value['contact'];
+        }
+
+        this._data = value;
     }
 
     get contact(): Contact {
-        if (this._data['contact'] == undefined || this._data['contact'] == null) {
-            return new Contact();
-        }
-
-        let contact = new Contact();
-        contact.data = this._data['contact'];
-        return contact;
+        return this._contact;
     }
 
     set contact(contact: Contact) {
-        if (contact == null) {
-            let emptyContact = new Contact();
-            this._data['contact'] = emptyContact.data;
-            return;
-        }
-
-        this._data['contact'] = contact.data;
+        this._contact = contact;
     } 
 }
