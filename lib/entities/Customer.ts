@@ -11,28 +11,23 @@ export class Customer extends BmbyEntity {
         }
     }
 
-    set data(value: any) {
-        this._data = value;
-
-        if (this._data['contact'] != undefined && this._data['contact'] != null) {
-            this._data['contact'] = new Contact();
-            this._data['contact'].data = this._data['contact'];
-        }
-    }
-
-    get data(): any {
-        if (this._data['contact'] != undefined && this._data['contact'] instanceof Contact) {
-            this._data['contact'] = this._data['contact'].data;
-        }
-
-        return this._data;
-    }
-
     get contact(): Contact {
         if (this._data['contact'] == undefined || this._data['contact'] == null) {
-            this._data['contact'] = new Contact();
+            return new Contact();
         }
 
-        return this._data['contact'];
+        let contact = new Contact();
+        contact.data = this._data['contact'];
+        return contact;
     }
+
+    set contact(contact: Contact) {
+        if (contact == null) {
+            let emptyContact = new Contact();
+            this._data['contact'] = emptyContact.data;
+            return;
+        }
+
+        this._data['contact'] = contact.data;
+    } 
 }
