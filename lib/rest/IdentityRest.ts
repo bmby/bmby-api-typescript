@@ -8,11 +8,43 @@ export class IdentityRest extends BmbyRest {
     protected _endPoint = "https://identity.bmby.com";
     protected _tokenUri = "/connect/token";
 
-    isLoggedIn(): Promise<boolean> {
+    private storeData(data: any){
+        this._storage.store(this._accessTokenField, data.access_token);
+        this._storage.store(this._refereshTokenField, data.refresh_token);
 
-        return new Promise<boolean>((resolve, reject) => {
-            reject(false);
-        });
+        let tokenParts = (<string>data.access_token).split('.');
+        
+        if (tokenParts[1] == undefined) {
+            return;
+        }
+
+        let decodedToken: any = JSON.parse(this._httpClient.base64Decode(tokenParts[1]))
+        
+        if (decodedToken.exp == undefined) {
+            return;
+        }
+
+        this._storage.store(this._tokenExpirationField, decodedToken.exp);
+    }
+
+    isLoggedIn(clientId: string, clientSecret: string): Promise<any> {
+        let expirationTime: number = parseInt(this._storage.get(this._tokenExpirationField));
+
+        if (!isNaN(expirationTime) && expirationTime != null && expirationTime > new Date().getTime() / 1000) {
+            return new Promise<boolean>((resolve, reject) => {
+                resolve(null);
+            }); 
+        }
+
+        let refreshToken = this._storage.get(this._refereshTokenField);
+
+        if (refreshToken == null) {
+            return new Promise<boolean>((resolve, reject) => {
+                reject(null);
+            }); 
+        }
+
+        return this.refereshToken(clientId, clientSecret);
     }
 
     login(clientId: string, clientSecret: string, username: string, password: string): Promise<BmbyHttpResponse> {
@@ -33,49 +65,24 @@ export class IdentityRest extends BmbyRest {
         result.then(function(response: BmbyHttpResponse){
             if (response.status == BmbyHttpResponseStatus.Ok) {
                 let data = response.data;
-
-                _this._storage.store(_this._accessTokenField, data.access_token);
-                _this._storage.store(_this._refereshTokenField, data.refresh_token);
+                _this.storeData(data);
             }
-        })
-        .catch(function(){
-            //
         });
 
         return result;
     }
 
-    autoRefreshToken(clientId: string, clientSecret: string): void {
-        if (this._autorefreshing) {
+    refereshToken(clientId: string, clientSecret: string): Promise<BmbyHttpResponse> {
+        let refreshToken: string = this._storage.get(this._refereshTokenField);
+
+        if (refreshToken == null) {
             return;
         }
 
-        this._autorefreshing = true;
-        let _this = this;
-
-        // setInterval(function(){
-        //     let refreshToken = _this._storage.get(_this._refereshTokenField);
-
-        //     if (refreshToken == null) {
-        //         return;
-        //     }
-
-        //     _this.refereshToken(clientId, clientSecret, refreshToken)
-        //     .then(function(response: BmbyHttpResponse){
-        //         console.log(response.data)
-        //     })
-        //     .catch(function(response: BmbyHttpResponse){
-        //         console.log(response.data)
-        //     });
-
-        // }, 60000);
-    }
-
-    refereshToken(clientId: string, clientSecret: string, refereshToken: string): Promise<BmbyHttpResponse> {
         let data: any = {
             'grant_type': 'refresh_token',
             'client_id': clientId,
-            'refresh_token': refereshToken
+            'refresh_token': refreshToken
         };
 
         if (clientSecret != "") {
@@ -88,9 +95,7 @@ export class IdentityRest extends BmbyRest {
         result.then(function(response: BmbyHttpResponse){
             if (response.status == BmbyHttpResponseStatus.Ok) {
                 let data = response.data;
-
-                _this._storage.store(_this._accessTokenField, data.access_token);
-                _this._storage.store(_this._refereshTokenField, data.refresh_token);
+                _this.storeData(data);
             }
         });
         
@@ -100,6 +105,7 @@ export class IdentityRest extends BmbyRest {
     logout(clientId: string, clientSecret: string): Promise<BmbyHttpResponse> {
         this._storage.delete(this._accessTokenField);
         this._storage.delete(this._refereshTokenField);
+        this._storage.delete(this._tokenExpirationField);
         return null;
     }
 }
