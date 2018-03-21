@@ -25,7 +25,12 @@ export abstract class BmbyRest {
         }
 
         if (authorize) {
-            headers["Authorization"] = "Bearer " + this._storage.get(this._accessTokenField);
+            let token = this._storage.get(this._accessTokenField);
+
+            if (token != null)
+            {
+                headers["Authorization"] = "Bearer " + token;
+            }
         }
 
         return headers;

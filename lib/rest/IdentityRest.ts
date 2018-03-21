@@ -106,6 +106,9 @@ export class IdentityRest extends BmbyRest {
         this._storage.delete(this._accessTokenField);
         this._storage.delete(this._refereshTokenField);
         this._storage.delete(this._tokenExpirationField);
-        return null;
+
+        return new Promise<BmbyHttpResponse>((resolve, reject) => {
+            resolve(null);
+        });
     }
 }
