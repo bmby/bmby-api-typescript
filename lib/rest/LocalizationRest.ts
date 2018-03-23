@@ -4,7 +4,7 @@ import { Customer } from '../entities/Customer';
 import { Contact } from '../entities/Contact';
 import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
-import { ListItem } from '../index';
+import { ListItem } from '../entities/ListItem';
 
 export class LocalizationRest extends BmbyRest {
     listCountries(params: any): Promise<Array<ListItem>> {

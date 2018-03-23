@@ -4,7 +4,7 @@ import { Customer } from '../entities/Customer';
 import { Contact } from '../entities/Contact';
 import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
-import { QueryParams } from '../index';
+import { QueryParams } from '../QueryParams';
 import { PaginatedList } from '../PaginatedList';
 
 export class CustomerRest extends BmbyRest {

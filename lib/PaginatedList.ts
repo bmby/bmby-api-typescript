@@ -1,8 +1,6 @@
 export class PaginatedList<T> {
     
-    constructor(private _data: any) {
-
-    }
+    constructor(private _data: any) { }
 
     get hasNextPage(): boolean {
         return this._data.hasNextPage;

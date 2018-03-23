@@ -5,6 +5,8 @@ import { ListItem } from "./ListItem";
 import { Image } from "./Image";
 
 export class Property extends BmbyEntity {
+    private _contact: Contact;
+
     private _options = {
         'has_air_conditioner': false,
         'has_window_bars': false,
@@ -38,11 +40,14 @@ export class Property extends BmbyEntity {
     constructor() {
         super();
 
+        this._contact = new Contact();
+
         this._data = {
             'property_id': 0,
             'agency_id': null,
             'bmby_project_id': null,
             'contact_id': '',
+            'contact': this._contact.data,
             'catalog': PropertyCatalog.Unknown,
             'title': '',
             'description': '',
@@ -119,20 +124,16 @@ export class Property extends BmbyEntity {
     set data(value: any) {
         this._data = value;
 
-        if (this._data['contact'] != undefined && this._data['contact'] != null) {
-            this._data['contact'] = new Contact();
-            this._data['contact'].data = this._data['contact'];
+        if (value['contact'] == undefined || value['contact'] == null) {
+            this._contact = new Contact();
+            value['contact'] = this._contact.data;
+        } else {
+            this._contact.data = value['contact'];
         }
     }
 
     get data(): any {
-        if (this._data['contact'] != undefined && this._data['contact'] instanceof Contact) {
-            this._data['contact'] = this._data['contact'].data;
-        }
-        
-        for (let key in this._options) {
-            this._data[key] = this._options[key];
-        }
+        this._data['contact'] = this._contact.data;
 
         return this._data;
     }
@@ -149,14 +150,6 @@ export class Property extends BmbyEntity {
 
         return imagesArr;
     }
-
-    get contact(): Contact {
-        if (this._data['contact'] == undefined || this._data['contact'] == null) {
-            this._data['contact'] = new Contact();
-        }
-
-        return this._data['contact'];
-    }
     
     get id(): string {
         return this._data['property_id'];
@@ -164,6 +157,13 @@ export class Property extends BmbyEntity {
     set id(value: string) {
         this._data['property_id'] = value;
     }
+
+    get contact(): Contact {
+        return this._contact;
+    }
+    set contact(contact: Contact) {
+        this._contact = contact;
+    } 
     
     get agencyId(): string {
         return this._data['agency_id'];
@@ -351,6 +351,11 @@ export class Property extends BmbyEntity {
                 'icon': icons != undefined && icons[key] != undefined ? icons[key] : '',
                 'selected': this._data[key]
             }
+
+            let option = new ListItem();
+            option.data = optionData;
+            
+            options.push(option);
         }
 
         return options;
