@@ -3,25 +3,28 @@ import { CrmTask } from '../entities/CrmTask';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
 import { BmbyContentType, BmbyHttpResponseStatus, QueryParams } from '../index';
+import { PaginatedList } from '../PaginatedList';
 
 export class CrmTaskRest extends BmbyRest {
-    listTasks(params: QueryParams): Promise<Array<CrmTask>> {
+    listTasks(params: QueryParams): Promise<PaginatedList<CrmTask>> {
         var queryString = params != null ? params.queryString() : "";
         let result = this.get("/crmtasks" + queryString, true);
 
-        return new Promise<Array<CrmTask>>((resolve, reject) => {
+        return new Promise<PaginatedList<CrmTask>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let crmTasks = new Array<CrmTask>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let crmTask = new CrmTask();
-                        crmTask.data = response.data[i];
+                        crmTask.data = response.data.items[i];
                         crmTasks.push(crmTask);
                     }
 
-                    resolve(crmTasks);
+                    response.data.items = crmTasks;
+
+                    resolve(new PaginatedList<CrmTask>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -65,22 +68,25 @@ export class CrmTaskRest extends BmbyRest {
         });
     }
 
-    listContacts(pattern: string): Promise<Array<Contact>> {
-        let result = this.get("/crmtasks/contacts", true);
+    listContacts(params: QueryParams): Promise<PaginatedList<Contact>> {
+        let result = this.get("/crmtasks/contacts" + params.queryString(), true);
 
-        return new Promise<Array<Contact>>((resolve, reject) => {
+        return new Promise<PaginatedList<Contact>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let contacts = new Array<Contact>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let contact = new Contact();
-                        contact.data = response.data[i];
+                        contact.data = response.data.items[i];
                         contacts.push(contact);
                     }
 
-                    resolve(contacts);
+                    let data = response.data;
+                    data.items = contacts;
+
+                    resolve(new PaginatedList<Contact>(data));
                 } catch(ex) {
                     reject(response);
                 }

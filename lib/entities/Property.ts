@@ -63,10 +63,10 @@ export class Property extends BmbyEntity {
             'can_be_rented_with_roommate': false,
             'roommate_gender': RoommateGender.Unknown,
             'rommate_can_smoke': false,
-            'zone_id': 0,
-            'city_id': 0,
-            'neighbourhood_id': 0,
-            'street_id': 0,
+            'zone_id': '',
+            'city_id': '',
+            'neighbourhood_id': '',
+            'street_id': '',
             'house_number': '',
             'property_type': 0,
             'floor': 0,
@@ -74,8 +74,8 @@ export class Property extends BmbyEntity {
             'rooms': 0.0,
             'area': 0.0,
             'plot_area': 0.0,
-            'rent_price': 0.0,
-            'sale_price': 0.0,
+            'price': 0.0,
+            'price_change': 0.0,
             'unit_price': 0.0,
             'entry_date': '',
             'comments': '',
@@ -112,7 +112,6 @@ export class Property extends BmbyEntity {
             'wind_direction': WindDirection.Unknown,
             'creation_time': 0,
             'last_update_time': 0,
-            'external_images': [],
             'images': []
         }
     }
@@ -313,18 +312,18 @@ export class Property extends BmbyEntity {
         this._data['plot_area'] = value;
     }
        
-    get rentPrice(): number {
-        return this._data['rent_price'];
+    get price(): number {
+        return this._data['price'];
     }
-    set rentPrice(value: number) {
-        this._data['rent_price'] = value;
+    set price(value: number) {
+        this._data['price'] = value;
     }
        
-    get salePrice(): number {
-        return this._data['sale_price'];
+    get pricechange(): number {
+        return this._data['price_change'];
     }
-    set salePrice(value: number) {
-        this._data['sale_price'] = value;
+    set pricechange(value: number) {
+        this._data['price_change'] = value;
     }
        
     get unitPrice(): number {
@@ -334,11 +333,11 @@ export class Property extends BmbyEntity {
         this._data['unit_price'] = value;
     }
        
-    get entryDate(): Date {
-        return this._data['entry_date'];
+    get publishDate(): Date {
+        return this._data['publish_date'];
     }
-    set entryDate(value: Date) {
-        this._data['entry_date'] = value;
+    set publishDate(value: Date) {
+        this._data['publish_date'] = value;
     }
 
     getOptions(dictionary?: any, icons?: any): Array<ListItem> {

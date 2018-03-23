@@ -74,4 +74,12 @@ export abstract class BmbyRest {
             this._endPoint = endPoint;
         }
     }
+
+    set endPoint(endPoint: string) {
+        this._endPoint = endPoint;
+    }
+    get endPoint(): string {
+        return this._endPoint;
+    }
+
 }

@@ -3,26 +3,29 @@ import { Query } from '../entities/Query';
 import { Property } from '../entities/Property';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
-import { QueryParams } from '../index';
+import { QueryParams } from '../QueryParams';
+import { PaginatedList } from '../PaginatedList';
 
 export class QueryRest extends BmbyRest {
-    listQueries(params: QueryParams): Promise<Array<Query>> {
+    listQueries(params: QueryParams): Promise<PaginatedList<Query>> {
         var queryString = params != null ? params.queryString() : "";
         let result = this.get("/queries" + queryString, true);
 
-        return new Promise<Array<Query>>((resolve, reject) => {
+        return new Promise<PaginatedList<Query>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let queries = new Array<Query>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let query = new Query();
-                        query.data = response.data[i];
+                        query.data = response.data.items[i];
                         queries.push(query);
                     }
 
-                    resolve(queries);
+                    response.data.items = queries;
+
+                    resolve(new PaginatedList<Query>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -33,22 +36,24 @@ export class QueryRest extends BmbyRest {
         });
     }
 
-    listMatchedProperties(queryId: string): Promise<Array<Property>> {
+    listMatchedProperties(queryId: string): Promise<PaginatedList<Property>> {
         let result = this.get("/properties?queryId=" + queryId, true);
 
-        return new Promise<Array<Property>>((resolve, reject) => {
+        return new Promise<PaginatedList<Property>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let properties = new Array<Property>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let property = new Property();
-                        property.data = response.data[i];
+                        property.data = response.data.items[i];
                         properties.push(property);
                     }
+                    
+                    response.data.items = properties;
 
-                    resolve(properties);
+                    resolve(new PaginatedList<Property>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -93,6 +98,6 @@ export class QueryRest extends BmbyRest {
     }
 
     setQueryStatus(queryId: string, isActive: boolean): Promise<BmbyHttpResponse> {
-        return this.patch("/queries/" + queryId, { is_active: true }, true);
+        return this.patch("/queries/" + queryId, { IsActive: isActive }, true);
     }
 }
