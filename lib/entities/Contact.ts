@@ -20,6 +20,38 @@ export class Contact extends BmbyEntity {
         }
     }
 
+    get defaultMobile(): string {
+        if (this.mobile != "") {
+            return this.mobile
+        }
+
+        if (this.mobile2 != "") {
+            return this.mobile2
+        }
+
+        return "";
+    }
+
+    get defaultPhone(): string {
+        if (this.mobile != "") {
+            return this.mobile
+        }
+
+        if (this.mobile2 != "") {
+            return this.mobile2
+        }
+
+        if (this.phone != "") {
+            return this.phone
+        }
+
+        if (this.phone2 != "") {
+            return this.phone2
+        }
+
+        return "";
+    }
+
     get relatedEntityType(): string {
         return this._data['related_entity_type'];
     }
