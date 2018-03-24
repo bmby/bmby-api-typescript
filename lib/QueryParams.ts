@@ -4,7 +4,7 @@ export enum SortDirection {
 }
 
 export class QueryParams {
-    private _params: any = {
+    protected _params: any = {
         'sortBy': '',
         'sortDirection': SortDirection[0].toLowerCase(),
         'page': null,

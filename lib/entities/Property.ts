@@ -82,7 +82,7 @@ export class Property extends BmbyEntity {
             'price': 0.0,
             'price_change': 0.0,
             'unit_price': 0.0,
-            'entry_date': '',
+            'publish_date': null,
             'comments': '',
             'has_air_conditioner': false,
             'has_window_bars': false,
@@ -115,8 +115,8 @@ export class Property extends BmbyEntity {
             'on_columns': false,
             'published_by_agency': false,
             'wind_direction': WindDirection.Unknown,
-            'creation_time': 0,
-            'last_update_time': 0,
+            'creation_time': null,
+            'last_update_time': null,
             'images': []
         }
     }
@@ -299,10 +299,10 @@ export class Property extends BmbyEntity {
     }
        
     get area(): number {
-        return this._data['rooms'];
+        return this._data['area'];
     }
     set area(value: number) {
-        this._data['rooms'] = value;
+        this._data['area'] = value;
     }
        
     get plotArea(): number {
@@ -354,7 +354,7 @@ export class Property extends BmbyEntity {
 
             let option = new ListItem();
             option.data = optionData;
-            
+
             options.push(option);
         }
 

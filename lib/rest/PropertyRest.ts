@@ -15,7 +15,7 @@ export class PropertyRest extends BmbyRest {
                 try {
                     let properties = new Array<Property>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let property = new Property();
                         property.data = response.data.items[i];
                         properties.push(property);

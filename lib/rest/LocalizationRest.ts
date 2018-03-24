@@ -5,24 +5,32 @@ import { Contact } from '../entities/Contact';
 import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { ListItem } from '../entities/ListItem';
+import { QueryParams } from '../index';
+import { PaginatedList } from '../PaginatedList';
+import { CityQueryParams } from '../querystrings/CityQueryParams';
+import { NeighbourhoodQueryParams } from '../querystrings/NeighbourhoodQueryParams';
+import { RegionQueryParams } from '../querystrings/RegionQueryParams';
+import { StreetQueryParams } from '../querystrings/StreetQueryParams';
 
 export class LocalizationRest extends BmbyRest {
-    listCountries(params: any): Promise<Array<ListItem>> {
-        let result = this.get("/localization/countries", true);
+    listCountries(languageCode: string, params: QueryParams): Promise<PaginatedList<ListItem>> {
+        let result = this.get("/listcountries/" + languageCode + params.queryString(), true);
 
-        return new Promise<Array<ListItem>>((resolve, reject) => {
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let items = new Array<ListItem>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let item = new ListItem();
-                        item.data = response.data[i];
+                        item.data = response.data.items[i];
                         items.push(item);
                     }
 
-                    resolve(items);
+                    response.data.items = items;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -33,22 +41,24 @@ export class LocalizationRest extends BmbyRest {
         });
     }
 
-    listCities(countryCode: string, params: any): Promise<Array<ListItem>> {
-        let result = this.get("/localization/cities", true);
+    listRegions(languageCode: string, params: RegionQueryParams): Promise<PaginatedList<ListItem>> {
+        let result = this.get("/listregions/" + languageCode + params.queryString(), true);
 
-        return new Promise<Array<ListItem>>((resolve, reject) => {
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let items = new Array<ListItem>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let item = new ListItem();
-                        item.data = response.data[i];
+                        item.data = response.data.items[i];
                         items.push(item);
                     }
 
-                    resolve(items);
+                    response.data.items = items;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -59,22 +69,52 @@ export class LocalizationRest extends BmbyRest {
         });
     }
 
-    listNeighbourhoods(cityId: string, params: any): Promise<Array<ListItem>> {
-        let result = this.get("/localization/neighbourhoods", true);
+    listCities(languageCode: string, params: CityQueryParams): Promise<PaginatedList<ListItem>> {
+        let result = this.get("/listcities/" + languageCode + params.queryString(), true);
 
-        return new Promise<Array<ListItem>>((resolve, reject) => {
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let items = new Array<ListItem>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let item = new ListItem();
-                        item.data = response.data[i];
+                        item.data = response.data.items[i];
                         items.push(item);
                     }
 
-                    resolve(items);
+                    response.data.items = items;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
+    listNeighbourhoods(languageCode: string, params: NeighbourhoodQueryParams): Promise<PaginatedList<ListItem>> {
+        let result = this.get("/listneighbourhoods/" + languageCode + params.queryString(), true);
+
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let items = new Array<ListItem>();
+                    
+                    for (let i in response.data.items) {
+                        let item = new ListItem();
+                        item.data = response.data.items[i];
+                        items.push(item);
+                    }
+
+                    response.data.items = items;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -85,22 +125,24 @@ export class LocalizationRest extends BmbyRest {
         });
     }
  
-    listStreets(cityId: string, params: any): Promise<Array<ListItem>> {
-        let result = this.get("/localization/streets", true);
+    listStreets(languageCode: string, params: StreetQueryParams): Promise<PaginatedList<ListItem>> {
+        let result = this.get("/liststreets/" + languageCode + params.queryString(), true);
 
-        return new Promise<Array<ListItem>>((resolve, reject) => {
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
             result
             .then(function(response) {
                 try {
                     let items = new Array<ListItem>();
                     
-                    for (let i in response.data) {
+                    for (let i in response.data.items) {
                         let item = new ListItem();
-                        item.data = response.data[i];
+                        item.data = response.data.items[i];
                         items.push(item);
                     }
 
-                    resolve(items);
+                    response.data.items = items;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
                 } catch(ex) {
                     reject(response);
                 }
@@ -110,5 +152,4 @@ export class LocalizationRest extends BmbyRest {
             });
         });
     }
-   
 }
