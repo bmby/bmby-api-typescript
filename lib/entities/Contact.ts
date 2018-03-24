@@ -16,7 +16,8 @@ export class Contact extends BmbyEntity {
             'phone2': '',
             'fax': '',
             'fax2': '',
-            'related_entity_type': ''
+            'related_entity_type': '',
+            'related_entity_id': ''
         }
     }
 
@@ -57,6 +58,13 @@ export class Contact extends BmbyEntity {
     }
     set relatedEntityType(value: string) {
         this._data['related_entity_type'] = value;
+    }
+
+    get relatedEntityId(): string {
+        return this._data['related_entity_id'];
+    }
+    set relatedEntityId(value: string) {
+        this._data['related_entity_id'] = value;
     }
 
     get id(): string {
