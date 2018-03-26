@@ -32,6 +32,14 @@ export class Customer extends BmbyEntity {
         this._data = value;
     }
 
+    get id(): string {
+        return this._data['customer_id'];
+    }
+
+    set id(id: string) {
+        this._data['customer_id'] = id;
+    } 
+
     get contact(): Contact {
         return this._contact;
     }
