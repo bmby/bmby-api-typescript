@@ -77,6 +77,9 @@ export class Property extends BmbyEntity {
             'floor': 0,
             'floors': 0,
             'rooms': 0.0,
+            'bathrooms': 0,
+            'toilets': 0,
+            'parkings': 0,
             'area': 0.0,
             'plot_area': 0.0,
             'price': 0.0,
@@ -117,6 +120,8 @@ export class Property extends BmbyEntity {
             'wind_direction': WindDirection.Unknown,
             'creation_time': null,
             'last_update_time': null,
+            'lat': null,
+            'lon': null,
             'images': []
         }
     }
@@ -130,6 +135,10 @@ export class Property extends BmbyEntity {
         } else {
             this._contact.data = value['contact'];
         }
+
+        this._data['deal_type'] = DealType[this._data['deal_type']];        
+        this._data['property_type'] = PropertyType[this._data['property_type']];        
+
     }
 
     get data(): any {
@@ -227,7 +236,21 @@ export class Property extends BmbyEntity {
     set address(value: string) {
         this._data['address'] = value;
     }
-        
+     
+    get lat(): number {
+        return this._data['lat'];
+    }
+    set lat(value: number) {
+        this._data['lat'] = value;
+    }
+     
+    get lon(): number {
+        return this._data['lon'];
+    }
+    set lon(value: number) {
+        this._data['lon'] = value;
+    }
+       
     get propertyType(): PropertyType {
         return this._data['property_type'];
     }
@@ -296,6 +319,27 @@ export class Property extends BmbyEntity {
     }
     set rooms(value: number) {
         this._data['rooms'] = value;
+    }
+       
+    get bathrooms(): number {
+        return this._data['bathrooms'];
+    }
+    set bathrooms(value: number) {
+        this._data['bathrooms'] = value;
+    }
+       
+    get toilets(): number {
+        return this._data['toilets'];
+    }
+    set toilets(value: number) {
+        this._data['toilets'] = value;
+    }
+       
+    get parkings(): number {
+        return this._data['parkings'];
+    }
+    set parkings(value: number) {
+        this._data['parkings'] = value;
     }
        
     get area(): number {
