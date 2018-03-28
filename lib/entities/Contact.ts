@@ -6,6 +6,7 @@ export class Contact extends BmbyEntity {
         
         this._data = {
             'contact_id': '',
+            'avatar': '',
             'first_name': '',
             'last_name': '',
             'company_name': '',

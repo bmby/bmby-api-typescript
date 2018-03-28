@@ -72,7 +72,7 @@ export class QueryParams {
     }
 
     queryString(): string {
-        let q = "";
+        let params = [];
         
         for (let key in this._params) {
             let value = this._params[key];
@@ -81,8 +81,10 @@ export class QueryParams {
                 continue;
             }
 
-            q = q + key + "=" + encodeURIComponent(value);
+            params.push(key + "=" + encodeURIComponent(value));
         }
+
+        let q = params.join("&");
 
         return q != "" ? '?' + q : "";
     }

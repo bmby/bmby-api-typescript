@@ -50,6 +50,7 @@ export class Property extends BmbyEntity {
             'contact': this._contact.data,
             'catalog': PropertyCatalog.Unknown,
             'title': '',
+            'display_title': '',
             'description': '',
             'limited_description': '',
             'address': '',
@@ -207,6 +208,13 @@ export class Property extends BmbyEntity {
     }
     set title(value: string) {
         this._data['title'] = value;
+    }
+        
+    get displayTitle(): string {
+        return this._data['display_title'];
+    }
+    set displayTitle(value: string) {
+        this._data['display_title'] = value;
     }
         
     get description(): string {
