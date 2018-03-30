@@ -39,7 +39,7 @@ export class PropertyRest extends BmbyRest {
     }
 
     updateProperty(property: Property): Promise<BmbyHttpResponse> {
-        return this.post("/properties", property.data, true, BmbyContentType.Json);
+        return this.put("/properties", property.data, true);
     }
 
     listCrmTasks(propertyId: string): Promise<PaginatedList<CrmTask>> {
