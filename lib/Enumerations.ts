@@ -1,5 +1,4 @@
 export enum CrmTaskPriority  {
-    Unknown = 0,
     Normal = 1,
     High = 2,
     Medium = 3,
@@ -7,7 +6,6 @@ export enum CrmTaskPriority  {
 }
 
 export enum CrmTaskStatus {
-    Unknown = 0,
     New = 1,
     Completed = 2,
     Canceled = 3
@@ -18,6 +16,13 @@ export enum CrmTaskSubType {
     Incoming = 1,
     Outgoing = 2,
     Hidden = 3
+}
+
+export enum PropertyTypeCategory
+{
+    Residencial = 1,
+    Commercial = 2,
+    Plot = 3
 }
 
 export enum CrmTaskType {
@@ -78,59 +83,6 @@ export enum PropertyCatalog {
     Unknown = 0,
     Repository = 1,
     Agency = 2
-}
-
-export  enum PropertyType {
-    Unknown = 0,
-    Apartment = 1,
-    GardenApartment = 2,
-    Duplex = 3,
-    Single = 4,
-    Villa = 5,
-    Triplex = 6,
-    Penthouse = 7,
-    PlotOneFloor = 8,
-    CommercialBuilding = 9,
-    Office = 10,
-    Storeroom = 12,
-    TwoFamilyCottage = 13,
-    Parking = 14,
-    Studio = 15,
-    Cottage = 16,
-    Shop = 17,
-    ResidentialBuilding = 18,
-    Farm = 19,
-    Business = 20,
-    RooftopApartment = 22,
-    MiniPenthouse = 23,
-    ResidentialUnit = 24,
-    Caravan = 25,
-    Loft = 26,
-    Parter = 27,
-    Hall = 28,
-    ApartmentToDivide = 29,
-    DistributedApartment = 30,
-    AgricultureLand = 31,
-    Clinic = 32,
-    VacationApartment = 33,
-    GroupOfAcquisition = 34,
-    CommercialCenter = 34,
-    IndustrialBuilding = 38,
-    OfficesBuilding = 39,
-    OfficesPlot = 40,
-    IndustrialPlot = 42,
-    ParkingLot = 44,
-    PlotSaturating = 45,
-    Hotel = 46,
-    CommercialPlot = 47,
-    HotelPlot = 48,
-    GeneralPlot = 49,
-    CommercialProperty = 50,
-    HomeForElderly = 51,
-    ShelteredHousing = 52,
-    ClusterHousing = 53,
-    SpaceHeat = 54,
-    Ranches = 55
 }
 
 export enum RealEstateMedia {

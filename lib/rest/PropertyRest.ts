@@ -4,8 +4,38 @@ import { Contact } from '../entities/Contact';
 import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { PaginatedList } from '../PaginatedList';
+import { PropertyTypeCategory } from '../Enumerations';
+import { ListItem } from '../entities/ListItem';
 
 export class PropertyRest extends BmbyRest {
+    listPropertiyTypes(languageCode: string, category?: PropertyTypeCategory): Promise<Array<ListItem>> {
+        var categoryParam = category != undefined ? "?category=" + category : "";
+
+        let result = this.get("/propertytypes/" + languageCode + categoryParam, true);
+
+        return new Promise<Array<ListItem>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let propertyTypes = new Array<ListItem>();
+                    
+                    for (let i in response.data) {
+                        let propertyType = new ListItem();
+                        propertyType.data = response.data[i];
+                        propertyTypes.push(propertyType);
+                    }
+
+                    resolve(propertyTypes);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
     listProperties(params: any): Promise<PaginatedList<Property>> {
         let result = this.get("/properties", true);
 

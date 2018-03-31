@@ -259,10 +259,10 @@ export class Property extends BmbyEntity {
         this._data['lon'] = value;
     }
        
-    get propertyType(): PropertyType {
+    get propertyType(): string {
         return this._data['property_type'];
     }
-    set propertyType(value: PropertyType) {
+    set propertyType(value: string) {
         this._data['property_type'] = value;
     }
         
