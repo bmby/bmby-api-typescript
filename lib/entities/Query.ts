@@ -86,11 +86,6 @@ export class Query extends BmbyEntity {
             'neighbourhoods': [],
             'streets': [],
 
-            'regions_list': [],
-            'cities_list': [],
-            'neighbourhoods_list': [],
-            'streets_list': [],
-
             'property_types': [],
             'matches': 0,
             'creation_time': new Date(),
@@ -399,20 +394,36 @@ export class Query extends BmbyEntity {
         this._data['is_active'] = value;
     }
 
-    get dealTypes(): Array<DealType> {
-        return this._data['deal_types'];
+    get dealTypes(): Array<ListItem> {
+        let dealTypes = Array<ListItem>();
+
+        if (this._data['deal_types']) {
+            for (let i in this._data['deal_types']) {
+                let dealType = new ListItem();
+                dealType.data = this._data['deal_types'][i];
+                dealTypes.push(dealType);
+            }
+        }
+
+        return dealTypes;
     }
-    set dealTypes(value: Array<DealType>) {
-        this._data['deal_types'] = value;
+    set dealTypes(value: Array<ListItem>) {
+        this._data['deal_types'] = [];
+
+        if (value != null) {
+            for (let i in value) {
+                this._data['deal_types'].push(value[i].data)
+            }
+        }
     }
 
     get regions(): Array<ListItem> {
         let regions = Array<ListItem>();
 
-        if (this._data['regions_list']) {
-            for (let i in this._data['regions_list']) {
+        if (this._data['regions']) {
+            for (let i in this._data['regions']) {
                 let region = new ListItem();
-                region.data = this._data['regions_list'][i];
+                region.data = this._data['regions'][i];
                 regions.push(region);
             }
         }
@@ -420,28 +431,22 @@ export class Query extends BmbyEntity {
         return regions;
     }
     set regions(value: Array<ListItem>) {
+        this._data['regions'] = [];
+
         if (value != null) {
-            this._data['regions_list'] = [];
-            this._data['regions'] = [];
-
             for (let i in value) {
-                this._data['regions_list'].push(value[i].data)
-                this._data['regions'].push(value[i].key)
+                this._data['regions'].push(value[i].data)
             }
-
-            return;
         }
-
-        this._data['regions'] = value;
     }
 
     get cities(): Array<ListItem> {
         let cities = Array<ListItem>();
 
-        if (this._data['cities_list']) {
-            for (let i in this._data['cities_list']) {
+        if (this._data['cities']) {
+            for (let i in this._data['cities']) {
                 let city = new ListItem();
-                city.data = this._data['cities_list'][i];
+                city.data = this._data['cities'][i];
                 cities.push(city);
             }
         }
@@ -449,28 +454,24 @@ export class Query extends BmbyEntity {
         return cities;
     }
     set cities(value: Array<ListItem>) {
-        if (value != null) {
-            this._data['cities_list'] = [];
-            this._data['cities'] = [];
+        this._data['cities'] = [];
 
+        if (value != null) {
             for (let i in value) {
-                this._data['cities_list'].push(value[i].data)
-                this._data['cities'].push(value[i].key)
+                this._data['cities'].push(value[i].data)
             }
 
             return;
         }
-
-        this._data['cities'] = value;
     }
 
     get neighbourhoods(): Array<ListItem> {
         let neighbourhoods = Array<ListItem>();
 
-        if (this._data['neighbourhoods_list']) {
-            for (let i in this._data['neighbourhoods_list']) {
+        if (this._data['neighbourhoods']) {
+            for (let i in this._data['neighbourhoods']) {
                 let neighbourhood = new ListItem();
-                neighbourhood.data = this._data['neighbourhoods_list'][i];
+                neighbourhood.data = this._data['neighbourhoods'][i];
                 neighbourhoods.push(neighbourhood);
             }
         }
@@ -478,28 +479,24 @@ export class Query extends BmbyEntity {
         return neighbourhoods;
     }
     set neighbourhoods(value: Array<ListItem>) {
-        if (value != null) {
-            this._data['neighbourhoods_list'] = [];
-            this._data['neighbourhoods'] = [];
+        this._data['neighbourhoods'] = [];
 
+        if (value != null) {
             for (let i in value) {
-                this._data['neighbourhoods_list'].push(value[i].data)
-                this._data['neighbourhoods'].push(value[i].key)
+                this._data['neighbourhoods'].push(value[i].data)
             }
 
             return;
         }
-
-        this._data['neighbourhoods'] = value;
     }
 
     get streets(): Array<ListItem> {
         let streets = Array<ListItem>();
 
-        if (this._data['streets_list']) {
-            for (let i in this._data['streets_list']) {
+        if (this._data['streets']) {
+            for (let i in this._data['streets']) {
                 let street = new ListItem();
-                street.data = this._data['streets_list'][i];
+                street.data = this._data['streets'][i];
                 streets.push(street);
             }
         }
@@ -507,26 +504,40 @@ export class Query extends BmbyEntity {
         return streets;
     }
     set streets(value: Array<ListItem>) {
-        if (value != null) {
-            this._data['streets_list'] = [];
-            this._data['streets'] = [];
+        this._data['streets'] = [];
 
+        if (value != null) {
             for (let i in value) {
-                this._data['streets_list'].push(value[i].data)
-                this._data['streets'].push(value[i].key)
+                this._data['streets'].push(value[i].data)
             }
 
             return;
         }
-
-        this._data['streets'] = value;
     }
 
-    get propertyTypes(): Array<string> {
-        return this._data['property_types'];
+    get propertyTypes(): Array<ListItem> {
+        let propertyTypes = Array<ListItem>();
+
+        if (this._data['property_types']) {
+            for (let i in this._data['property_types']) {
+                let propertyType = new ListItem();
+                propertyType.data = this._data['property_types'][i];
+                propertyTypes.push(propertyType);
+            }
+        }
+
+        return propertyTypes;
     }
-    set propertyTypes(value: Array<string>) {
-        this._data['property_types'] = value;
+    set propertyTypes(value: Array<ListItem>) {
+        this._data['property_types'] = [];
+
+        if (value != null) {
+            for (let i in value) {
+                this._data['property_types'].push(value[i].data)
+            }
+
+            return;
+        }
     }
 
     getOptions(dictionary?: any, icons?: any): Array<ListItem> {
