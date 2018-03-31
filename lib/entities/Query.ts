@@ -1,5 +1,5 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { WindDirection, DealType, PropertyType } from "../Enumerations";
+import { WindDirection, DealType } from "../Enumerations";
 import { ListItem } from "./ListItem";
 
 export class Query extends BmbyEntity {
@@ -522,10 +522,10 @@ export class Query extends BmbyEntity {
         this._data['streets'] = value;
     }
 
-    get propertyTypes(): Array<PropertyType> {
+    get propertyTypes(): Array<string> {
         return this._data['property_types'];
     }
-    set propertyTypes(value: Array<PropertyType>) {
+    set propertyTypes(value: Array<string>) {
         this._data['property_types'] = value;
     }
 

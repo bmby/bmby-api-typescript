@@ -1,5 +1,5 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection, PropertyType } from "../Enumerations";
+import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection } from "../Enumerations";
 import { Contact } from "./Contact";
 import { ListItem } from "./ListItem";
 import { Image } from "./Image";
@@ -138,8 +138,6 @@ export class Property extends BmbyEntity {
         }
 
         this._data['deal_type'] = DealType[this._data['deal_type']];        
-        this._data['property_type'] = PropertyType[this._data['property_type']];        
-
     }
 
     get data(): any {
