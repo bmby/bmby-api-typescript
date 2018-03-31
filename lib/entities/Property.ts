@@ -74,7 +74,7 @@ export class Property extends BmbyEntity {
             'neighbourhood_id': '',
             'street_id': '',
             'house_number': '',
-            'property_type': 0,
+            'property_type': '',
             'floor': 0,
             'floors': 0,
             'rooms': 0.0,
