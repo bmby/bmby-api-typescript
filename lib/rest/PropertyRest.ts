@@ -64,6 +64,35 @@ export class PropertyRest extends BmbyRest {
         });
     }
 
+    autocompleteProperties(params: any): Promise<PaginatedList<ListItem>> {
+        let queryString = params.queryString();
+        let result = this.get("/autocompleteproperties" + queryString, true);
+
+        return new Promise<PaginatedList<ListItem>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let properties = new Array<ListItem>();
+                    
+                    for (let i in response.data.items) {
+                        let property = new ListItem();
+                        property.data = response.data.items[i];
+                        properties.push(property);
+                    }
+
+                    response.data.items = properties;
+
+                    resolve(new PaginatedList<ListItem>(response.data));
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
     insertProperty(property: Property): Promise<BmbyHttpResponse> {
         return this.post("/properties", property.data, true, BmbyContentType.Json);
     }

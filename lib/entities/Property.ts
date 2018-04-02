@@ -69,7 +69,7 @@ export class Property extends BmbyEntity {
             'can_be_rented_with_roommate': false,
             'roommate_gender': RoommateGender.Unknown,
             'rommate_can_smoke': false,
-            'zone_id': '',
+            'region_id': '',
             'city_id': '',
             'neighbourhood_id': '',
             'street_id': '',
@@ -271,11 +271,11 @@ export class Property extends BmbyEntity {
         this._data['deal_type'] = value;
     }
         
-    get zoneId(): number {
-        return this._data['zone_id'];
+    get regionId(): number {
+        return this._data['region_id'];
     }
-    set zoneId(value: number) {
-        this._data['zone_id'] = value;
+    set regionId(value: number) {
+        this._data['region_id'] = value;
     }
         
     get cityId(): number {
