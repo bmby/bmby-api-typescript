@@ -6,6 +6,7 @@ import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { PaginatedList } from '../PaginatedList';
 import { PropertyTypeCategory } from '../Enumerations';
 import { ListItem } from '../entities/ListItem';
+import { PropertyQueryParams } from '../querystrings/PropertyQueryParams';
 
 export class PropertyRest extends BmbyRest {
     listPropertiyTypes(languageCode: string, category?: PropertyTypeCategory): Promise<Array<ListItem>> {
@@ -55,6 +56,36 @@ export class PropertyRest extends BmbyRest {
 
                     resolve(new PaginatedList<Property>(response.data));
                 } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+    
+    listMatchingCustomers(params: PropertyQueryParams): Promise<PaginatedList<Contact>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/propertycustomers" + queryString, true);
+
+        return new Promise<PaginatedList<Contact>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let contacts = new Array<Contact>();
+                    
+                    for (let i in response.data.items) {
+                        let customer = new Contact();
+                        customer.data = response.data.items[i];
+                        contacts.push(customer);
+                    }
+
+                    response.data.items = contacts;
+
+                    resolve(new PaginatedList<Contact>(response.data));
+                } catch(ex) {
+                    console.log(ex)
                     reject(response);
                 }
             })

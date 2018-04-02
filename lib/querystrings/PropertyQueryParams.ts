@@ -6,8 +6,16 @@ export class PropertyQueryParams extends QueryParams {
 
     constructor() {
         super();
-
         this._propertyQuery = new Query();
+
+        this._params['propertyId'] = null;
+    }
+
+    get propertyId(): string {
+        return this._params['propertyId'];
+    }
+    set propertyId(value: string) {
+        this._params['propertyId'] = value;
     }
 
     get query(): Query {

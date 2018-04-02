@@ -39,7 +39,7 @@ export class CustomerRest extends BmbyRest {
     }
     
     listContacts(params: QueryParams): Promise<PaginatedList<Contact>> {
-        var queryString = params != null ? params.queryString() : "";console.log("/autocompletecontacts" + queryString);
+        var queryString = params != null ? params.queryString() : "";
         let result = this.get("/autocompletecontacts" + queryString, true);
 
         return new Promise<PaginatedList<Contact>>((resolve, reject) => {
