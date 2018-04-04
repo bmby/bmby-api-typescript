@@ -280,31 +280,31 @@ export class Property extends BmbyEntity {
         this._data['deal_type'] = value;
     }
         
-    get regionId(): number {
+    get regionId(): string {
         return this._data['region_id'];
     }
-    set regionId(value: number) {
+    set regionId(value: string) {
         this._data['region_id'] = value;
     }
         
-    get cityId(): number {
+    get cityId(): string {
         return this._data['city_id'];
     }
-    set cityId(value: number) {
+    set cityId(value: string) {
         this._data['city_id'] = value;
     }
         
-    get neighbourhoodId(): number {
+    get neighbourhoodId(): string {
         return this._data['neighbourhood_id'];
     }
-    set neighbourhoodId(value: number) {
+    set neighbourhoodId(value: string) {
         this._data['neighbourhood_id'] = value;
     }
         
-    get streetId(): number {
+    get streetId(): string {
         return this._data['street_id'];
     }
-    set streetId(value: number) {
+    set streetId(value: string) {
         this._data['street_id'] = value;
     }
         
