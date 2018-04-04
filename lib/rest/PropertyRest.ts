@@ -132,34 +132,6 @@ export class PropertyRest extends BmbyRest {
         return this.put("/properties", property.data, true);
     }
 
-    listCrmTasks(propertyId: string): Promise<PaginatedList<CrmTask>> {
-        let result = this.get("/crmtasks?propertyId=" + propertyId, true);
-
-        return new Promise<PaginatedList<CrmTask>>((resolve, reject) => {
-            result
-            .then(function(response) {
-                try {
-                    let crmTasks = new Array<CrmTask>();
-                    
-                    for (let i in response.data) {
-                        let crmTask = new CrmTask();
-                        crmTask.data = response.data.items[i];
-                        crmTasks.push(crmTask);
-                    }
-
-                    response.data.items = crmTasks;
-
-                    resolve(new PaginatedList<CrmTask>(response.data));
-                } catch(ex) {
-                    reject(response);
-                }
-            })
-            .catch(function(response){
-                reject(response);
-            });
-        });
-    }
-
     uploadPropertyImage(propertyId: string): Promise<BmbyHttpResponse> {
         return null;
     }

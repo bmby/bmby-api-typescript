@@ -99,38 +99,6 @@ export class CustomerRest extends BmbyRest {
         });
     }
 
-    listCrmTasks(customerId: string, params?: QueryParams): Promise<PaginatedList<CrmTask>> {
-        params = params != undefined ? params : new QueryParams();
-        params.customerId = customerId;
-        var queryString = params != null ? params.queryString() : "";
-
-        let result = this.get("/crmtasks" + queryString, true);
-
-        return new Promise<PaginatedList<CrmTask>>((resolve, reject) => {
-            result
-            .then(function(response) {
-                try {
-                    let crmTasks = new Array<CrmTask>();
-                    
-                    for (let i in response.data.items) {
-                        let crmTask = new CrmTask();
-                        crmTask.data = response.data.items[i];
-                        crmTasks.push(crmTask);
-                    }
-
-                    response.data.items = crmTasks;
-
-                    resolve(new PaginatedList<CrmTask>(response.data));
-                } catch(ex) {
-                    reject(response);
-                }
-            })
-            .catch(function(response){
-                reject(response);
-            });
-        });
-    }
-
     uploadImage(): Promise<BmbyHttpResponse> {
         return null;
     }

@@ -26,7 +26,7 @@ export class CrmTask extends BmbyEntity {
             'meeting_end_date': null,
             'task_date': null,
             'voice_recording_url': '',
-            'user': null,
+            'user': '',
             'participants': []
         }
     }
@@ -148,14 +148,11 @@ export class CrmTask extends BmbyEntity {
         this._data['task_date'] = value
     }
     
-    get user(): User {
-        let user = new User();
-        user.data = this._data['user'];
-
-        return user
+    get user(): string {
+        return this._data['user'];
     }
-    set user(user: User) {
-        this._data['user'] = user.data;
+    set user(value: string) {
+        this._data['user'] = value;
     }
 
     get participants(): Array<Contact> {

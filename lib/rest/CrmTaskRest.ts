@@ -2,11 +2,11 @@ import { BmbyRest } from './BmbyRest';
 import { CrmTask } from '../entities/CrmTask';
 import { Contact } from '../entities/Contact';
 import { BmbyHttpResponse } from '../IBmbyHttpClient';
-import { BmbyContentType, BmbyHttpResponseStatus, QueryParams } from '../index';
+import { BmbyContentType, BmbyHttpResponseStatus, QueryParams, CrmTaskQueryParams } from '../index';
 import { PaginatedList } from '../PaginatedList';
 
 export class CrmTaskRest extends BmbyRest {
-    listTasks(params: QueryParams): Promise<PaginatedList<CrmTask>> {
+    listTasks(params: CrmTaskQueryParams): Promise<PaginatedList<CrmTask>> {
         var queryString = params != null ? params.queryString() : "";
         let result = this.get("/crmtasks" + queryString, true);
 
