@@ -427,48 +427,57 @@ export class Property extends BmbyEntity {
         return options;
     }
 
-    getAttributes(dictionary: any, icons?: any): Array<DisplayListItem> {
+    getAttributes(dictionary?: any, icons?: any): Array<DisplayListItem> {
         let attributes = new Array<DisplayListItem>();
-        let sqm = <string>dictionary.sqm;
+
+        let tanslate = (key) => {
+            if (dictionary == undefined && dictionary[key] == undefined) {
+                return key;
+            }
+            
+            return dictionary[key];
+        };
+
+        let sqm = tanslate("sqm");
         
         if (this.rooms != 0) {
-            attributes.push(new DisplayListItem(dictionary.rooms, this.rooms.toString()));
+            attributes.push(new DisplayListItem(tanslate("rooms"), this.rooms.toString()));
         }
         
         if (this.area != 0) {
-            attributes.push(new DisplayListItem(dictionary.area, sqm.replace("{{value}}", this.area.toString())));
+            attributes.push(new DisplayListItem(tanslate("area"), sqm.replace("{{value}}", this.area.toString())));
         }
         
         if (this.floor != 0) {
-            attributes.push(new DisplayListItem(dictionary.floor, this.floor.toString()));
+            attributes.push(new DisplayListItem(tanslate("floor"), this.floor.toString()));
         }
         
         if (this.floors != 0) {
-            attributes.push(new DisplayListItem(dictionary.floors, this.floors.toString()));
+            attributes.push(new DisplayListItem(tanslate("floors"), this.floors.toString()));
         }
         
         if (this.parkings != 0) {
-            attributes.push(new DisplayListItem(dictionary.parkings, this.parkings.toString()));
+            attributes.push(new DisplayListItem(tanslate("parkings"), this.parkings.toString()));
         }
         
         if (this.plotArea != 0) {
-            attributes.push(new DisplayListItem(dictionary.plot_area, sqm.replace("{{value}}", this.plotArea.toString())));
+            attributes.push(new DisplayListItem(tanslate("plot_area"), sqm.replace("{{value}}", this.plotArea.toString())));
         }
         
         if (this.bedrooms != 0) {
-            attributes.push(new DisplayListItem(dictionary.bedrooms, this.bedrooms.toString()));
+            attributes.push(new DisplayListItem(tanslate("bedrooms"), this.bedrooms.toString()));
         }
         
         if (this.bathrooms != 0) {
-            attributes.push(new DisplayListItem(dictionary.bathrooms, this.bathrooms.toString()));
+            attributes.push(new DisplayListItem(tanslate("bathrooms"), this.bathrooms.toString()));
         }
         
         if (this.toilets != 0) {
-            attributes.push(new DisplayListItem(dictionary.toilets, this.toilets.toString()));
+            attributes.push(new DisplayListItem(tanslate("toilets"), this.toilets.toString()));
         }
         
         if (this.plotArea != 0) {
-            attributes.push(new DisplayListItem(dictionary.garden_area, sqm.replace("{{value}}", this.plotArea.toString())));
+            attributes.push(new DisplayListItem(tanslate("garden_area"), sqm.replace("{{value}}", this.plotArea.toString())));
         }
 
         return attributes;
