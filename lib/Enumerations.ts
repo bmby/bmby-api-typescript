@@ -5,6 +5,13 @@ export enum CrmTaskPriority  {
     Tohandle = 4
 }
 
+export enum EntityTypes  {
+    Property = 1,
+    Customer = 2,
+    CrmTask = 3,
+    Query = 4
+}
+
 export enum CrmTaskStatus {
     New = 1,
     Completed = 2,

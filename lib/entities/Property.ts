@@ -3,6 +3,7 @@ import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirecti
 import { Contact } from "./Contact";
 import { ListItem } from "./ListItem";
 import { Image } from "./Image";
+import { DisplayListItem } from "./DisplayListItem";
 
 export class Property extends BmbyEntity {
     private _contact: Contact;
@@ -47,6 +48,7 @@ export class Property extends BmbyEntity {
             'agency_id': null,
             'bmby_project_id': null,
             'contact_id': '',
+            'bedrooms': 0,
             'contact': this._contact.data,
             'catalog': PropertyCatalog.Unknown,
             'title': '',
@@ -185,6 +187,13 @@ export class Property extends BmbyEntity {
     }
     set bmbyProjectId(value: number) {
         this._data['bmby_project_id'] = value;
+    }
+    
+    get bedrooms(): number {
+        return this._data['bedrooms'];
+    }
+    set bedrooms(value: number) {
+        this._data['bedrooms'] = value;
     }
     
     get contactId(): string {
@@ -362,6 +371,13 @@ export class Property extends BmbyEntity {
         this._data['plot_area'] = value;
     }
        
+    get gardenArea(): number {
+        return this._data['garden_area'];
+    }
+    set gardenArea(value: number) {
+        this._data['garden_area'] = value;
+    }
+    
     get price(): number {
         return this._data['price'];
     }
@@ -409,6 +425,53 @@ export class Property extends BmbyEntity {
         }
 
         return options;
+    }
+
+    getAttributes(dictionary: any, icons?: any): Array<DisplayListItem> {
+        let attributes = new Array<DisplayListItem>();
+        let sqm = <string>dictionary.sqm;
+        
+        if (this.rooms != 0) {
+            attributes.push(new DisplayListItem(dictionary.rooms, this.rooms.toString()));
+        }
+        
+        if (this.area != 0) {
+            attributes.push(new DisplayListItem(dictionary.area, sqm.replace("{{value}}", this.area.toString())));
+        }
+        
+        if (this.floor != 0) {
+            attributes.push(new DisplayListItem(dictionary.floor, this.floor.toString()));
+        }
+        
+        if (this.floors != 0) {
+            attributes.push(new DisplayListItem(dictionary.floors, this.floors.toString()));
+        }
+        
+        if (this.parkings != 0) {
+            attributes.push(new DisplayListItem(dictionary.parkings, this.parkings.toString()));
+        }
+        
+        if (this.plotArea != 0) {
+            attributes.push(new DisplayListItem(dictionary.plot_area, sqm.replace("{{value}}", this.plotArea.toString())));
+        }
+        
+        if (this.bedrooms != 0) {
+            attributes.push(new DisplayListItem(dictionary.bedrooms, this.bedrooms.toString()));
+        }
+        
+        if (this.bathrooms != 0) {
+            attributes.push(new DisplayListItem(dictionary.bathrooms, this.bathrooms.toString()));
+        }
+        
+        if (this.toilets != 0) {
+            attributes.push(new DisplayListItem(dictionary.toilets, this.toilets.toString()));
+        }
+        
+        if (this.plotArea != 0) {
+            attributes.push(new DisplayListItem(dictionary.garden_area, sqm.replace("{{value}}", this.plotArea.toString())));
+        }
+
+        return attributes;
     }
 
     setOptionValue(option: string, value: boolean): void {
