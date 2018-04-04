@@ -4,6 +4,8 @@ import { CrmTaskType, CrmTaskSubType, CrmTaskStatus, CrmTaskPriority } from "../
 import { User } from "./User";
 
 export class CrmTask extends BmbyEntity {
+    private _participants = Array<Contact>();
+
     constructor() {
         super();
 
@@ -38,8 +40,23 @@ export class CrmTask extends BmbyEntity {
         this._data['task_sub_type'] = CrmTaskSubType[this._data['task_sub_type']];        
         this._data['status'] = CrmTaskStatus[this._data['status']];
         this._data['priority'] = CrmTaskPriority[this._data['priority']];
+
+        this._participants = new Array<Contact>();
+
+        if (value['participants'] != undefined && value['participants'][0] != undefined) {
+            for (let i in value['participants']) {
+                let contact = new Contact();
+                contact.data = value['participants'][i];
+            }
+        }
     }
     get data(): any {
+        this._data['participants'] = [];
+
+        for (let i in this._participants) {
+            this._data['participants'].push(this._participants[i].data);
+        }
+
         return this._data;
     }
 
@@ -156,9 +173,17 @@ export class CrmTask extends BmbyEntity {
     }
 
     get participants(): Array<Contact> {
-        return this._data['participants'];
+        return this._participants;
     }
     set participants(value: Array<Contact>) {
-        this._data['participants'] = value
+        this._participants = new Array<Contact>();
+
+        if (value = null) {
+            return;
+        }
+
+        for (let i in value) {
+            this._participants.push(value[i]);
+        }
     }
 }
