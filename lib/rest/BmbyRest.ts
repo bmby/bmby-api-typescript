@@ -67,7 +67,11 @@ export abstract class BmbyRest {
     }
 
     protected upload(uri: string, meta: any, filePath: string): Promise<BmbyHttpResponse> {
-        return this._httpClient.upload(this._endPoint + uri, meta, filePath);
+        let headers = {
+            "Authorization": "Bearer " + this._storage.get(this._accessTokenField)
+        };
+
+        return this._httpClient.upload(this._endPoint + uri, meta, filePath, headers);
     }
 
     constructor(httpClient: IBmbyHttpClient, storage: ILocalStorage, endPoint?: string) {
