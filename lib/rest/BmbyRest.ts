@@ -66,6 +66,10 @@ export abstract class BmbyRest {
         return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Get, headers);
     }
 
+    protected upload(uri: string, meta: any, filePath: string): Promise<BmbyHttpResponse> {
+        return this._httpClient.upload(this._endPoint + uri, meta, filePath);
+    }
+
     constructor(httpClient: IBmbyHttpClient, storage: ILocalStorage, endPoint?: string) {
         this._httpClient = httpClient;
         this._storage = storage;

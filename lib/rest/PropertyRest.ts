@@ -132,8 +132,8 @@ export class PropertyRest extends BmbyRest {
         return this.put("/properties", property.data, true);
     }
 
-    uploadPropertyImage(propertyId: string): Promise<BmbyHttpResponse> {
-        return null;
+    uploadPropertyImage(propertyId: string, filePath: string): Promise<BmbyHttpResponse> {
+        return this.upload('/properties/uploadimage', { propertyId: propertyId }, filePath);
     }
 
     getProperty(propertyId: string): Promise<Property> {

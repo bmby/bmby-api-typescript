@@ -39,4 +39,5 @@ export interface IBmbyHttpClient {
     base64Decode(encodedString: string): string;
     urlEncode(data: Object): any;
     request(url: string, method: BmbyHttpMethod, headers: any, content?: any): Promise<BmbyHttpResponse>;
+    upload(url: string, meta: any, filePath: string): Promise<BmbyHttpResponse>;
 }
