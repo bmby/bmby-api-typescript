@@ -61,6 +61,7 @@ export class Property extends BmbyEntity {
             'bmby_company_id': 0,
             'bmby_broker_id': 0,
             'is_published': false,
+            'is_exclusive': false,
             'parser_record_id': 0,
             'media': RealEstateMedia.Unknown,
             'property_media_id': 0,
@@ -140,6 +141,7 @@ export class Property extends BmbyEntity {
         }
 
         this._data['deal_type'] = DealType[this._data['deal_type']];        
+        this._data['media'] = RealEstateMedia[this._data['media']];        
     }
 
     get data(): any {
@@ -279,6 +281,13 @@ export class Property extends BmbyEntity {
     set dealType(value: DealType) {
         this._data['deal_type'] = value;
     }
+
+    get media(): RealEstateMedia {
+        return this._data['media'];
+    }
+    set media(value: RealEstateMedia) {
+        this._data['media'] = value;
+    }
         
     get regionId(): string {
         return this._data['region_id'];
@@ -348,6 +357,13 @@ export class Property extends BmbyEntity {
     }
     set toilets(value: number) {
         this._data['toilets'] = value;
+    }
+
+    get isExclusive(): boolean {
+        return this._data['is_exclusive'];
+    }
+    set isExclusive(value: boolean) {
+        this._data['is_exclusive'] = value;
     }
        
     get parkings(): number {
