@@ -9,13 +9,13 @@ export class Image extends BmbyEntity {
             return url;
         }
         
-        url = "https://bmby.blob.core.windows.net/" + FileAccess[imageData['access']].toLowerCase;
+        url = "https://bmby.blob.core.windows.net/" + FileAccess[imageData['access']].toLowerCase();
 
         if (imageData['folder'] != null)
         {
             url += "/" + imageData['folder'];
         }
-
+        
         url += "/" + imageData['file_id'] + "/" + imageData['file_name'];
 
         return url;
