@@ -76,6 +76,7 @@ export class Query extends BmbyEntity {
             'has_garden': null,
             'has_panorama': null,
             'on_columns': null,
+            'customer_id': null,
     
             'is_active': true,
 
@@ -100,6 +101,13 @@ export class Query extends BmbyEntity {
     }
     get data(): any {
         return this._data;
+    }
+
+    set customerId(value: string) {
+        this._data['customer_id'] = value;
+    }
+    get customerId(): string {
+        return this._data['customer_id'];
     }
 
     get matches(): number {

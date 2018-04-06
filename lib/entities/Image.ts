@@ -25,38 +25,31 @@ export class Image extends BmbyEntity {
         super();
 
         this._data = {
+            'image_id': '',
             'original_image': '',
             'big_image': '',
             'medium_image': '',
             'small_image': ''
         }
     }
+    
+    get id(): string {
+        return this._data['image_id'];
+    }
  
     get originalImage(): string {
         return this.imageUrl(this._data['original_image']);
-    }
-    set originalImage(value: string) {
-        this._data['original_image'] = value
     }
  
     get bigImage(): string {
         return this.imageUrl(this._data['big_image']);
     }
-    set bigImage(value: string) {
-        this._data['big_image'] = value
-    }
  
     get mediumImage(): string {
         return this.imageUrl(this._data['medium_image']);
     }
-    set mediumImage(value: string) {
-        this._data['medium_image'] = value
-    }
  
     get smallImage(): string {
         return this.imageUrl(this._data['small_image']);
-    }
-    set smallImage(value: string) {
-        this._data['small_image'] = value
     }
 }

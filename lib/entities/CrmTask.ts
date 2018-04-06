@@ -96,10 +96,10 @@ export class CrmTask extends BmbyEntity {
     }
 
     get customerId(): string {
-        return this._data['crm_task_id'];
+        return this._data['customer_id'];
     }
     set customerId(value: string) {
-        this._data['crm_task_id'] = value
+        this._data['customer_id'] = value
     }
 
     get subject(): string {

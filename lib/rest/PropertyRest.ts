@@ -133,7 +133,11 @@ export class PropertyRest extends BmbyRest {
     }
 
     uploadPropertyImage(propertyId: string, filePath: string): Promise<BmbyHttpResponse> {
-        return this.upload('/properties/uploadimage', { propertyId: propertyId }, filePath);
+        return this.upload('/properties/images', { propertyId: propertyId }, filePath);
+    }
+
+    deletePropertyImage(imageId: string, propertyId: string): Promise<BmbyHttpResponse> {
+        return this.delete('/properties/images?imageId=' + imageId + "&propertyId=" + propertyId, true);
     }
 
     getProperty(propertyId: string): Promise<Property> {
