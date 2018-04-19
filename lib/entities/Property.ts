@@ -48,7 +48,7 @@ export class Property extends BmbyEntity {
             'agency_id': null,
             'bmby_project_id': null,
             'contact_id': '',
-            'bedrooms': 0,
+            'bedrooms': null,
             'contact': this._contact.data,
             'catalog': PropertyCatalog.Unknown,
             'title': '',
@@ -68,7 +68,7 @@ export class Property extends BmbyEntity {
             'page_link': '',
             'is_commercial': false,
             'deal_type': DealType.Unknown,
-            'number_of_payments_per_year': 0,
+            'number_of_payments_per_year': null,
             'can_be_rented_with_roommate': false,
             'roommate_gender': RoommateGender.Unknown,
             'rommate_can_smoke': false,
@@ -78,17 +78,17 @@ export class Property extends BmbyEntity {
             'street_id': '',
             'house_number': '',
             'property_type': '',
-            'floor': 0,
-            'floors': 0,
-            'rooms': 0.0,
-            'bathrooms': 0,
-            'toilets': 0,
-            'parkings': 0,
-            'area': 0.0,
-            'plot_area': 0.0,
-            'price': 0.0,
-            'price_change': 0.0,
-            'unit_price': 0.0,
+            'floor': null,
+            'floors': null,
+            'rooms': null,
+            'bathrooms': null,
+            'toilets': null,
+            'parkings': null,
+            'area': null,
+            'plot_area': null,
+            'price': null,
+            'price_change': null,
+            'unit_price': null,
             'publish_date': null,
             'comments': '',
             'has_air_conditioner': false,
@@ -117,7 +117,7 @@ export class Property extends BmbyEntity {
             'has_teracce': false,
             'has_access_for_disabled': false,
             'has_garden': false,
-            'garden_area': 0.0,
+            'garden_area': null,
             'has_panorama': false,
             'on_columns': false,
             'published_by_agency': false,
@@ -401,10 +401,10 @@ export class Property extends BmbyEntity {
         this._data['price'] = value;
     }
        
-    get pricechange(): number {
+    get priceChange(): number {
         return this._data['price_change'];
     }
-    set pricechange(value: number) {
+    set priceChange(value: number) {
         this._data['price_change'] = value;
     }
        

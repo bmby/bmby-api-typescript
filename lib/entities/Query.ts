@@ -318,10 +318,10 @@ export class Query extends BmbyEntity {
         this._data['has_parent_bedroom'] = value;
     }
 
-    get HasEventRoom(): boolean {
+    get hasEventRoom(): boolean {
         return this._data['has_event_room'];
     }
-    set HasEventRoom(value: boolean) {
+    set hasEventRoom(value: boolean) {
         this._data['has_event_room'] = value;
     }
 
