@@ -56,9 +56,9 @@ export abstract class BmbyRest {
         return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Patch, headers, data);
     }
 
-    protected delete(uri: string, authorize: boolean): Promise<BmbyHttpResponse> {
+    protected delete(uri: string, authorize: boolean, data?: any): Promise<BmbyHttpResponse> {
         let headers = this.getHeaders(authorize);
-        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Delete, headers);
+        return this._httpClient.request(this._endPoint + uri, BmbyHttpMethod.Delete, headers, data);
     }
 
     protected get(uri: string, authorize: boolean, params?: any): Promise<BmbyHttpResponse> {

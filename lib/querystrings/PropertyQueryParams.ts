@@ -24,15 +24,15 @@ export class PropertyQueryParams extends QueryParams {
             params.push(key + "=" + encodeURIComponent(value));
         }
         
-        if (false && this._propertyQuery != null) {
-            var queryParams = this._propertyQuery.data;
+        // if (this._propertyQuery != null) {
+        //     var queryParams = this._propertyQuery.data;
 
-            for (let key in queryParams)
-            {
+        //     for (let key in queryParams)
+        //     {
 
-                params.push(key + "=" + encodeURIComponent(queryParams[key]));
-            }
-        }
+        //         params.push(key + "=" + encodeURIComponent(queryParams[key]));
+        //     }
+        // }
 
         let q = params.join("&");
 

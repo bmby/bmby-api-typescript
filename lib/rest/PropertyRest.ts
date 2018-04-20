@@ -67,7 +67,7 @@ export class PropertyRest extends BmbyRest {
     
     listMatchingCustomers(params: PropertyQueryParams): Promise<PaginatedList<Contact>> {
         var queryString = params != null ? params.queryString() : "";
-        let result = this.get("/propertycustomers" + queryString, true);
+        let result = this.get("/propertymatches" + queryString, true);
 
         return new Promise<PaginatedList<Contact>>((resolve, reject) => {
             result
@@ -93,6 +93,14 @@ export class PropertyRest extends BmbyRest {
                 reject(response);
             });
         });
+    }
+
+    addMatches(propertyId:string, customers: Array<Contact>): Promise<BmbyHttpResponse> {
+        return this.put("/propertymatches/" + propertyId, customers.map(c => c.relatedEntityId), true);
+    }
+
+    removeMatches(propertyId:string, customers: Array<Contact>): Promise<BmbyHttpResponse> {
+        return this.delete("/propertymatches/" + propertyId, true, customers.map(c => c.relatedEntityId));
     }
 
     autocompleteProperties(params: PropertyQueryParams): Promise<PaginatedList<Property>> {

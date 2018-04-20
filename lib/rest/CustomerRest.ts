@@ -6,6 +6,7 @@ import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { QueryParams } from '../QueryParams';
 import { PaginatedList } from '../PaginatedList';
+import { ContactQueryParams } from '../querystrings/ContactQueryParams';
 
 export class CustomerRest extends BmbyRest {
     listCustomers(params: QueryParams): Promise<PaginatedList<Customer>> {
@@ -38,7 +39,7 @@ export class CustomerRest extends BmbyRest {
         });
     }
     
-    listContacts(params: QueryParams): Promise<PaginatedList<Contact>> {
+    listContacts(params: ContactQueryParams): Promise<PaginatedList<Contact>> {
         var queryString = params != null ? params.queryString() : "";
         let result = this.get("/autocompletecontacts" + queryString, true);
 
