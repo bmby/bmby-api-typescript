@@ -110,6 +110,12 @@ export enum RoommateGender {
     Female = 2
 }
 
+export enum VisitStatus {
+    Unknown = 0,
+    Visited = 1,
+    NotVisited = 2
+}
+
 export enum WindDirection {
     Unknown = 0,
     North = 1,

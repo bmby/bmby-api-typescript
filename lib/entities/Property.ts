@@ -421,6 +421,13 @@ export class Property extends BmbyEntity {
     set publishDate(value: Date) {
         this._data['publish_date'] = value;
     }
+       
+    get creationTime(): Date {
+        return this._data['creation_time'];
+    }
+    set creationTime(value: Date) {
+        this._data['creation_time'] = value;
+    }
 
     getOptions(dictionary?: any, icons?: any): Array<ListItem> {
         let options = new Array<ListItem>();

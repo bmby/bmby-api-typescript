@@ -7,6 +7,8 @@ import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { QueryParams } from '../QueryParams';
 import { PaginatedList } from '../PaginatedList';
 import { ContactQueryParams } from '../querystrings/ContactQueryParams';
+import { PropertyQueryParams } from '../querystrings/PropertyQueryParams';
+import { CustomerProperty } from '../entities/CustomerProperty';
 
 export class CustomerRest extends BmbyRest {
     listCustomers(params: QueryParams): Promise<PaginatedList<Customer>> {
@@ -70,11 +72,10 @@ export class CustomerRest extends BmbyRest {
     }
 
     listQueries(customerId: string, params?: QueryParams): Promise<PaginatedList<Query>> {
-        params = params != undefined ? params : new QueryParams();
+        params = params != undefined && params != null ? params : new QueryParams();
         params.customerId = customerId;
-        var queryString = params != null ? params.queryString() : "";
 
-        let result = this.get("/queries" + queryString, true);
+        let result = this.get("/queries" + params.queryString(), true);
 
         return new Promise<PaginatedList<Query>>((resolve, reject) => {
             result
@@ -91,6 +92,36 @@ export class CustomerRest extends BmbyRest {
                     response.data.items = queries;
                     resolve(new PaginatedList<Query>(response.data));
                 } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+    
+    listMatchingProperties(params: PropertyQueryParams): Promise<PaginatedList<CustomerProperty>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/customerproperties" + queryString, true);
+
+        return new Promise<PaginatedList<CustomerProperty>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let customerProperties = new Array<CustomerProperty>();
+                    
+                    for (let i in response.data.items) {
+                        let customer = new CustomerProperty();
+                        customer.data = response.data.items[i];
+                        customerProperties.push(customer);
+                    }
+
+                    response.data.items = customerProperties;
+
+                    resolve(new PaginatedList<CustomerProperty>(response.data));
+                } catch(ex) {
+                    console.log(ex)
                     reject(response);
                 }
             })

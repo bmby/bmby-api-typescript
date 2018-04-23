@@ -8,3 +8,4 @@ export * from './Property';
 export * from './Query';
 export * from './User';
 export * from './Image';
+export * from './CustomerProperty';
