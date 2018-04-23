@@ -9,6 +9,7 @@ import { PaginatedList } from '../PaginatedList';
 import { ContactQueryParams } from '../querystrings/ContactQueryParams';
 import { PropertyQueryParams } from '../querystrings/PropertyQueryParams';
 import { CustomerProperty } from '../entities/CustomerProperty';
+import { Property } from '../index';
 
 export class CustomerRest extends BmbyRest {
     listCustomers(params: QueryParams): Promise<PaginatedList<Customer>> {
@@ -129,6 +130,14 @@ export class CustomerRest extends BmbyRest {
                 reject(response);
             });
         });
+    }
+
+    addPropertyMatches(customerId:string, properties: Array<Property>): Promise<BmbyHttpResponse> {
+        return this.put("/customerproperties/" + customerId, properties.map(p => p.id), true);
+    }
+
+    removePropertyMatches(customerId:string, properties: Array<Property>): Promise<BmbyHttpResponse> {
+        return this.delete("/customerproperties/" + customerId, true, properties.map(p => p.id));
     }
 
     uploadImage(): Promise<BmbyHttpResponse> {
