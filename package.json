@@ -1,6 +1,6 @@
 {
   "name": "@bmby/bmby-api-typescript",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Typescript library for BMBY API",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

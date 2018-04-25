@@ -1,5 +1,5 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { FileAccess } from "../index";
+import { FileAccess } from "../Enumerations";
 
 export class Image extends BmbyEntity {
     private imageUrl(imageData: any): string {

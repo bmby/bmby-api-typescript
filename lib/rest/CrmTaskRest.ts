@@ -68,6 +68,10 @@ export class CrmTaskRest extends BmbyRest {
         });
     }
 
+    uploadVoice(contactId: string, filePath: string): Promise<BmbyHttpResponse> {
+        return this.upload('/crmtasks/voice', { contactId: contactId }, filePath);
+    }
+
     listContacts(params: QueryParams): Promise<PaginatedList<Contact>> {
         let result = this.get("/crmtasks/contacts" + params.queryString(), true);
 

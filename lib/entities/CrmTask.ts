@@ -2,6 +2,7 @@ import { BmbyEntity } from "./BmbyEntity";
 import { Contact } from "./Contact";
 import { CrmTaskType, CrmTaskSubType, CrmTaskStatus, CrmTaskPriority } from "../Enumerations";
 import { User } from "./User";
+import { File } from "./File";
 
 export class CrmTask extends BmbyEntity {
     private _participants = Array<Contact>();
@@ -27,7 +28,7 @@ export class CrmTask extends BmbyEntity {
             'meeting_start_date': null,
             'meeting_end_date': null,
             'task_date': null,
-            'voice_recording_url': '',
+            'voice': '',
             'user': '',
             'participants': []
         }
@@ -58,6 +59,18 @@ export class CrmTask extends BmbyEntity {
         }
 
         return this._data;
+    }
+
+    get voice(): string {
+        if (!this._data['voice'])
+        {
+            return null;
+        }
+
+        var file = new File();
+        file.data = this._data['voice'];
+
+        return file.url;
     }
 
     get id(): string {

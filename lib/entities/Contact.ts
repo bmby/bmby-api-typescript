@@ -1,12 +1,16 @@
 import { BmbyEntity } from "./BmbyEntity";
+import { Image } from "../index";
+import { File } from "./File";
 
 export class Contact extends BmbyEntity {
+
     constructor() {
         super();
         
         this._data = {
             'contact_id': '',
             'avatar': '',
+            'business_card': '',
             'first_name': '',
             'last_name': '',
             'company_name': '',
@@ -62,11 +66,28 @@ export class Contact extends BmbyEntity {
         this._data['related_entity_type'] = value;
     }
 
-    get avatar(): string {
-        return this._data['avatar'];
+    get avatar(): Image {
+        if (!this._data['avatar'])
+        {
+            return null;
+        }
+
+        var avatar = new Image();
+        avatar.data = this._data['avatar'];
+
+        return avatar;
     }
-    set avatar(value: string) {
-        this._data['avatar'] = value;
+
+    get businessCard(): string {
+        if (!this._data['business_card'])
+        {
+            return null;
+        }
+
+        var file = new File();
+        file.data = this._data['business_card'];
+
+        return file.url;
     }
 
     get description(): string {
