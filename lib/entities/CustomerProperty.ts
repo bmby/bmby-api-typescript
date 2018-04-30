@@ -4,7 +4,7 @@ import { VisitStatus } from "../index";
 import { Property } from "./Property";
 
 export class CustomerProperty extends BmbyEntity {
-    private _product:Property = new Property();
+    private _property:Property = new Property();
 
     constructor() {
         super();
@@ -28,10 +28,10 @@ export class CustomerProperty extends BmbyEntity {
         this._data = value;
 
         if (value['property'] == undefined || value['property'] == null) {
-            this._product = new Property();
-            value['property'] = this._product.data;
+            this._property = new Property();
+            value['property'] = this._property.data;
         } else {
-            this._product.data = value['property'];
+            this._property.data = value['property'];
         }
 
         this._data['customer_reaction'] = CustomerReaction[this._data['customer_reaction']];        
@@ -39,7 +39,7 @@ export class CustomerProperty extends BmbyEntity {
     }
 
     get data(): any {
-        this._data['property'] = this._product.data;
+        this._data['property'] = this._property.data;
 
         return this._data;
     }
@@ -108,9 +108,9 @@ export class CustomerProperty extends BmbyEntity {
     }
  
     get property(): Property {
-        return this._data['property'];
+        return this._property;
     }
     set property(value: Property) {
-        this._data['property'] = value
+        this._property = value
     }
 }
