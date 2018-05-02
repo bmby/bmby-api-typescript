@@ -18,6 +18,9 @@ export class ListItem extends BmbyEntity {
     get key(): string {
         return this._data['key'];
     }
+    set key(value: string) {
+        this._data['key'] = value;
+    }
 
     get displayName(): string {
         return this._data['display_name'];
