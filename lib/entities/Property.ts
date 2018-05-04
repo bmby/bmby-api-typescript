@@ -73,11 +73,16 @@ export class Property extends BmbyEntity {
             'roommate_gender': RoommateGender.Unknown,
             'rommate_can_smoke': false,
             'region_id': '',
+            'region': null,
             'city_id': '',
+            'city': null,
             'neighbourhood_id': '',
+            'neighbourhood': null,
             'street_id': '',
+            'street': null,
             'house_number': '',
-            'property_type': '',
+            'property_type': null,
+            'property_type_id': '',
             'floor': null,
             'floors': null,
             'rooms': null,
@@ -268,11 +273,23 @@ export class Property extends BmbyEntity {
         this._data['lon'] = value;
     }
        
-    get propertyType(): string {
-        return this._data['property_type'];
+    get propertyTypeId(): string {
+        return this._data['property_type_id'];
     }
-    set propertyType(value: string) {
-        this._data['property_type'] = value;
+    set propertyTypeId(value: string) {
+        this._data['property_type_id'] = value;
+    }
+       
+    get propertyType(): ListItem {
+        var item = new ListItem();
+
+        if (!this._data['property_type']) {
+            return item;
+        }
+
+        item.data = this._data['property_type'];
+
+        return item;
     }
         
     get dealType(): DealType {
@@ -296,11 +313,33 @@ export class Property extends BmbyEntity {
         this._data['region_id'] = value;
     }
         
+    get region(): ListItem {
+        var item = new ListItem();
+
+        if (!this._data['region']) {
+            return item;
+        }
+
+        item.data = this._data['region'];
+        return item;
+    }
+       
     get cityId(): string {
         return this._data['city_id'];
     }
     set cityId(value: string) {
         this._data['city_id'] = value;
+    }
+        
+    get city(): ListItem {
+        var item = new ListItem();
+
+        if (!this._data['city']) {
+            return item;
+        }
+
+        item.data = this._data['city'];
+        return item;
     }
         
     get neighbourhoodId(): string {
@@ -310,11 +349,33 @@ export class Property extends BmbyEntity {
         this._data['neighbourhood_id'] = value;
     }
         
+    get neighbourhood(): ListItem {
+        var item = new ListItem();
+
+        if (!this._data['neighbourhood']) {
+            return item;
+        }
+
+        item.data = this._data['neighbourhood'];
+        return item;
+    }
+        
     get streetId(): string {
         return this._data['street_id'];
     }
     set streetId(value: string) {
         this._data['street_id'] = value;
+    }
+        
+    get street(): ListItem {
+        var item = new ListItem();
+
+        if (!this._data['street']) {
+            return item;
+        }
+
+        item.data = this._data['street'];
+        return item;
     }
         
     get houseNumber(): string {
