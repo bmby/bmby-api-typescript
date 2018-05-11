@@ -15,6 +15,8 @@ export class QueryParams {
         'queryId': null
     }
 
+    protected _sortOptions: Array<string> = [];
+
     get keywords(): string {
         return this._params['keywords'];
     }

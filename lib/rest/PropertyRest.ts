@@ -132,6 +132,35 @@ export class PropertyRest extends BmbyRest {
         });
     }
 
+    listPropertyViewHistory(params: PropertyQueryParams): Promise<PaginatedList<Property>> {
+        let queryString = params.queryString();
+        let result = this.get("/propertyviews" + queryString, true);
+
+        return new Promise<PaginatedList<Property>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let properties = new Array<Property>();
+                    
+                    for (let i in response.data.items) {
+                        let property = new Property();
+                        property.data = response.data.items[i];
+                        properties.push(property);
+                    }
+
+                    response.data.items = properties;
+
+                    resolve(new PaginatedList<Property>(response.data));
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
     insertProperty(property: Property): Promise<BmbyHttpResponse> {
         return this.post("/properties", property.data, true, BmbyContentType.Json);
     }

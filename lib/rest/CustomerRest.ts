@@ -71,6 +71,36 @@ export class CustomerRest extends BmbyRest {
             });
         });
     }
+    
+    listContactViewHistory(params: ContactQueryParams): Promise<PaginatedList<Contact>> {
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/contactviews" + queryString, true);
+
+        return new Promise<PaginatedList<Contact>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let contacts = new Array<Contact>();
+                    
+                    for (let i in response.data.items) {
+                        let customer = new Contact();
+                        customer.data = response.data.items[i];
+                        contacts.push(customer);
+                    }
+
+                    response.data.items = contacts;
+
+                    resolve(new PaginatedList<Contact>(response.data));
+                } catch(ex) {
+                    console.log(ex)
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
 
     listQueries(customerId: string, params?: QueryParams): Promise<PaginatedList<Query>> {
         params = params != undefined && params != null ? params : new QueryParams();

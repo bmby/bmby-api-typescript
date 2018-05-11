@@ -1,4 +1,5 @@
 import { QueryParams } from "../QueryParams";
+import { CrmTaskStatus, CrmTaskPriority } from "..";
 
 export class CrmTaskQueryParams extends QueryParams {
     constructor() {
@@ -6,6 +7,8 @@ export class CrmTaskQueryParams extends QueryParams {
 
         this._params['propertyId'] = null;
         this._params['customerId'] = null;
+        this._params['status'] = null;
+        this._params['priority'] = null;
     }
 
     get propertyId(): string {
@@ -20,5 +23,19 @@ export class CrmTaskQueryParams extends QueryParams {
     }
     set customerId(value: string) {
         this._params['customerId'] = value;
+    }
+
+    get status(): CrmTaskStatus {
+        return this._params['status'];
+    }
+    set status(value: CrmTaskStatus) {
+        this._params['status'] = value;
+    }
+
+    get priority(): CrmTaskPriority {
+        return this._params['priority'];
+    }
+    set priority(value: CrmTaskPriority) {
+        this._params['priority'] = value;
     }
 }

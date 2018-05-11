@@ -9,6 +9,10 @@ export class PropertyQueryParams extends QueryParams {
         this._propertyQuery = new Query();
 
         this._params['propertyId'] = null;
+        
+        this._params['latitude'] = null;
+        this._params['longitude'] = null;
+        this._params['radius'] = null;
     }
 
     queryString(): string {
@@ -51,5 +55,26 @@ export class PropertyQueryParams extends QueryParams {
     }
     set query(value: Query) {
         this._propertyQuery = value;
+    }
+
+    get latitude(): number {
+        return this._params['latitude'];
+    }
+    set latitude(value: number) {
+        this._params['latitude'] = value;
+    }
+
+    get longitude(): number {
+        return this._params['longitude'];
+    }
+    set longitude(value: number) {
+        this._params['longitude'] = value;
+    }
+
+    get radius(): number {
+        return this._params['radius'];
+    }
+    set radius(value: number) {
+        this._params['radius'] = value;
     }
 }
