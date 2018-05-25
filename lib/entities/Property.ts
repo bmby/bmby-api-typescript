@@ -524,43 +524,43 @@ export class Property extends BmbyEntity {
 
         let sqm = tanslate("sqm");
         
-        if (this.rooms != 0) {
+        if (this.rooms != null) {
             attributes.push(new DisplayListItem(tanslate("rooms"), this.rooms.toString()));
         }
         
-        if (this.area != 0) {
+        if (this.area != null) {
             attributes.push(new DisplayListItem(tanslate("area"), sqm.replace("{{value}}", this.area.toString())));
         }
         
-        if (this.floor != 0) {
+        if (this.floor != null) {
             attributes.push(new DisplayListItem(tanslate("floor"), this.floor.toString()));
         }
         
-        if (this.floors != 0) {
+        if (this.floors != null) {
             attributes.push(new DisplayListItem(tanslate("floors"), this.floors.toString()));
         }
         
-        if (this.parkings != 0) {
+        if (this.parkings != null) {
             attributes.push(new DisplayListItem(tanslate("parkings"), this.parkings.toString()));
         }
         
-        if (this.plotArea != 0) {
+        if (this.plotArea != null) {
             attributes.push(new DisplayListItem(tanslate("plot_area"), sqm.replace("{{value}}", this.plotArea.toString())));
         }
         
-        if (this.bedrooms != 0) {
+        if (this.bedrooms != null) {
             attributes.push(new DisplayListItem(tanslate("bedrooms"), this.bedrooms.toString()));
         }
         
-        if (this.bathrooms != 0) {
+        if (this.bathrooms != null) {
             attributes.push(new DisplayListItem(tanslate("bathrooms"), this.bathrooms.toString()));
         }
         
-        if (this.toilets != 0) {
+        if (this.toilets != null) {
             attributes.push(new DisplayListItem(tanslate("toilets"), this.toilets.toString()));
         }
         
-        if (this.plotArea != 0) {
+        if (this.plotArea != null) {
             attributes.push(new DisplayListItem(tanslate("garden_area"), sqm.replace("{{value}}", this.plotArea.toString())));
         }
 
