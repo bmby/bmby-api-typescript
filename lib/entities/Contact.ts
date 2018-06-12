@@ -23,7 +23,8 @@ export class Contact extends BmbyEntity {
             'fax2': '',
             'related_entity_type': '',
             'related_entity_id': '',
-            'description': ''
+            'description': '',
+            'address': ''
         }
     }
 
@@ -95,6 +96,13 @@ export class Contact extends BmbyEntity {
     }
     set description(value: string) {
         this._data['description'] = value;
+    }
+
+    get address(): string {
+        return this._data['address'];
+    }
+    set address(value: string) {
+        this._data['address'] = value;
     }
 
     get relatedEntityId(): string {

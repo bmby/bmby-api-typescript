@@ -5,7 +5,7 @@ export class Image extends BmbyEntity {
     private imageUrl(imageData: any): string {
         var url = ""
         
-        if (imageData == null && imageData == "") {
+        if (!imageData) {
             return url;
         }
         
