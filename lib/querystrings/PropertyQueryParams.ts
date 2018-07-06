@@ -1,5 +1,6 @@
 import { Query } from "../entities/Query";
 import { QueryParams } from "../QueryParams";
+import { PropertyCatalog } from "..";
 
 export class PropertyQueryParams extends QueryParams {
     private _propertyQuery: Query = null;
@@ -9,7 +10,8 @@ export class PropertyQueryParams extends QueryParams {
         this._propertyQuery = new Query();
 
         this._params['propertyId'] = null;
-        
+        this._params['catalog'] = PropertyCatalog.Unknown;
+       
         this._params['latitude'] = null;
         this._params['longitude'] = null;
         this._params['radius'] = null;

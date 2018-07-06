@@ -123,3 +123,11 @@ export enum WindDirection {
     East = 3,
     West = 4
 }
+
+export enum Platform
+{
+    Unknown = 0,
+    Web = 1,
+    Android = 2,
+    Ios = 3
+}
