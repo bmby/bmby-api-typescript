@@ -1,7 +1,6 @@
 import { BmbyRest } from './BmbyRest';
 import { Property } from '../entities/Property';
 import { Contact } from '../entities/Contact';
-import { CrmTask } from '../entities/CrmTask';
 import { BmbyHttpResponse, BmbyContentType } from '../IBmbyHttpClient';
 import { PaginatedList } from '../PaginatedList';
 import { PropertyTypeCategory } from '../Enumerations';

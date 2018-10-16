@@ -1,5 +1,6 @@
 export * from './BmbyEntity';
 export * from './ListItem';
+export * from './Agency';
 export * from './DisplayListItem';
 export * from './Contact';
 export * from './CrmTask';
