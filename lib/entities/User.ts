@@ -10,6 +10,7 @@ export class User extends BmbyEntity {
             'last_name': '',
             'email': '',
             'agency': null,
+            'avatar_url': '',
             'agencies': []
         }
     }
@@ -33,6 +34,13 @@ export class User extends BmbyEntity {
     }
     set email(value: string) {
         this._data['email'] = value
+    }
+     
+    get avatarUrl(): string {
+        return this._data['avatar_url'];
+    }
+    set avatarUrl(value: string) {
+        this._data['avatar_url'] = value
     }
      
     get agency(): Agency {
