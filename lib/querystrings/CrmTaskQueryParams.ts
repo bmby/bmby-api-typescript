@@ -9,6 +9,7 @@ export class CrmTaskQueryParams extends QueryParams {
         this._params['customerId'] = null;
         this._params['status'] = null;
         this._params['priority'] = null;
+        this._params['day'] = null;
     }
 
     get propertyId(): string {
@@ -37,5 +38,16 @@ export class CrmTaskQueryParams extends QueryParams {
     }
     set priority(value: CrmTaskPriority) {
         this._params['priority'] = value;
+    }
+
+    get day(): Date {
+        if (this._params['day'] == null) {
+            return null;
+        }
+
+        return new Date(this._params['day']);
+    }
+    set day(value: Date) {
+        this._params['day'] = value.toDateString();
     }
 }

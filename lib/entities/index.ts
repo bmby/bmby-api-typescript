@@ -11,3 +11,4 @@ export * from './User';
 export * from './Image';
 export * from './File';
 export * from './CustomerProperty';
+export * from './NotificationSetting';

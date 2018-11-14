@@ -131,3 +131,14 @@ export enum Platform
     Android = 2,
     Ios = 3
 }
+
+export enum TimeLineEntityType
+{
+    Unknown = 0,
+    Lead = 1,
+    RecurringLead = 2,
+    Property = 3,
+    CustomerReaction = 4,
+    Crm = 5,
+    System = 6
+}
