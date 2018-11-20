@@ -37,7 +37,8 @@ export class PropertyRest extends BmbyRest {
     }
 
     listProperties(params: any): Promise<PaginatedList<Property>> {
-        let result = this.get("/properties", true);
+        var queryString = params != null ? params.queryString() : "";
+        let result = this.get("/properties" + queryString, true);
 
         return new Promise<PaginatedList<Property>>((resolve, reject) => {
             result
