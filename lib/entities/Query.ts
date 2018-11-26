@@ -39,6 +39,7 @@ export class Query extends BmbyEntity {
 
         this._data = {
             'query_id': '',
+            'title': '',
             'min_rooms': null,
             'max_rooms': null,
             'min_floor': null,
@@ -101,6 +102,13 @@ export class Query extends BmbyEntity {
     }
     get data(): any {
         return this._data;
+    }
+
+    set title(value: string) {
+        this._data['title'] = value;
+    }
+    get title(): string {
+        return this._data['title'];
     }
 
     set customerId(value: string) {
