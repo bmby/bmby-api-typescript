@@ -1,5 +1,4 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { TimeLineEntityType } from "../Enumerations";
 
 export class TimeLineEvent extends BmbyEntity {
     constructor() {
@@ -7,8 +6,9 @@ export class TimeLineEvent extends BmbyEntity {
 
         this._data = {
             'event_id': '',
-            'type': null,
+            'type': '',
             'time': null,
+            'title': '',
             'description': '',
             'done': false,
             'dismissed': false,
@@ -23,10 +23,10 @@ export class TimeLineEvent extends BmbyEntity {
         return this._data['event_id'];
     }
     
-    get type(): TimeLineEntityType {
+    get type(): string {
         return this._data['type'];
     }
-    set type(value: TimeLineEntityType) {
+    set type(value: string) {
         this._data['type'] = value;
     }
 
@@ -35,6 +35,13 @@ export class TimeLineEvent extends BmbyEntity {
     }
     set time(value: Date) {
         this._data['time'] = value
+    }
+
+    set title(value: string) {
+        this._data['title'] = value;
+    }
+    get title(): string {
+        return this._data['title'];
     }
 
     set description(value: string) {

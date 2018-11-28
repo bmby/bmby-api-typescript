@@ -35,6 +35,31 @@ export class CrmTaskRest extends BmbyRest {
         });
     }
 
+    scheduledDays(year: number, month: number): Promise<Array<number>> {
+        let result = this.get("/crmtasks/month/" + year + "-" + month, true);
+
+        return new Promise<Array<number>>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let days = new Array<number>();
+                    
+                    for (let i in response.data) {
+                        days.push(response.data[i]);
+                    }
+                    
+                    resolve(days);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
+
     insertTask(crmTask: CrmTask): Promise<BmbyHttpResponse> {
         return this.post("/crmtasks", crmTask.data, true, BmbyContentType.Json);
     }
