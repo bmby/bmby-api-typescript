@@ -45,7 +45,7 @@ export class CrmTaskRest extends BmbyRest {
                     let days = new Array<Date>();
                     
                     for (let i in response.data) {
-                        days.push(response.data[i]);
+                        days.push(new Date(response.data[i]));
                     }
 
                     resolve(days);
