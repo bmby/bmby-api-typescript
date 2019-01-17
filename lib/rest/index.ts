@@ -5,3 +5,4 @@ export * from './PropertyRest';
 export * from './QueryRest';
 export * from './LocalizationRest';
 export * from './UserRest';
+export * from './BmbyhoodRest';
