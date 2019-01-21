@@ -57,4 +57,8 @@ export class BmbyFacade {
     get userRest(): UserRest {
         return this._userRest;
     }
+
+    get bmbyhoodRest(): BmbyhoodRest {
+        return this._bmbyhoodRest;
+    }
 }
