@@ -13,3 +13,4 @@ export * from './File';
 export * from './CustomerProperty';
 export * from './NotificationSetting';
 export * from './TimeLineEvent';
+export * from './PortalId';
