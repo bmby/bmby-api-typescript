@@ -31,7 +31,7 @@ export class Query extends BmbyEntity {
         'has_access_for_disabled': null,
         'has_garden': null,
         'has_panorama': null,
-        'on_columns': null,
+        'on_columns': null
     }
 
     constructor() {

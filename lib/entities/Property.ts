@@ -135,7 +135,8 @@ export class Property extends BmbyEntity {
             'last_update_time': null,
             'lat': null,
             'lon': null,
-            'images': []
+            'images': [],
+            'matches': 0
         }
     }
 
@@ -520,6 +521,10 @@ export class Property extends BmbyEntity {
     }
     set entryDateMode(value: EntryDateMode) {
         this._data['entry_date_mode'] = value;
+    }
+
+    get matches(): number {
+        return this._data['matches'];
     }
 
     getOptions(dictionary?: any, icons?: any): Array<ListItem> {

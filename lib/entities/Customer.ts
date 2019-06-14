@@ -11,6 +11,7 @@ export class Customer extends BmbyEntity {
 
         this._data = {
             'customer_id': '',
+            'matches': 0,
             'contact': this._contact.data
         }
     }
@@ -47,4 +48,8 @@ export class Customer extends BmbyEntity {
     set contact(contact: Contact) {
         this._contact = contact;
     } 
+
+    get matches(): number {
+        return this._data['matches'];
+    }
 }
