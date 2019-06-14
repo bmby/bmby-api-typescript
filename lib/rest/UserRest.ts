@@ -88,6 +88,10 @@ export class UserRest extends BmbyRest {
         });
     }
 
+    saveUserSetting(setting: NotificationSetting): Promise<BmbyHttpResponse> {
+        return this.put("/users/notificationsettings", setting.data, true);
+    }
+
     setEventAsDone(eventId: string): Promise<BmbyHttpResponse> {
         return this.put("users/timeline/done", { "event_id": eventId, "snooze_time": null }, true);
     }
