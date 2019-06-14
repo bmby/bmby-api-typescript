@@ -1,3 +1,17 @@
+export enum PropertyCatalog {
+    Unknown = 0,
+    Repository = 1,
+    Agency = 2
+}
+
+export enum EntryDateMode
+{
+    Unknown = 0,
+    Immediate = 1,
+    Flexible = 2,
+    Date = 3
+}
+
 export enum CrmTaskPriority  {
     Normal = 1,
     High = 2,
@@ -21,6 +35,19 @@ export enum CrmTaskStatus {
     New = 1,
     Completed = 2,
     Canceled = 3
+}
+
+export enum BrokerageStatus
+{
+    Unknown = 0,
+    Active = 1,
+    NotActive = 2,
+    Sold = 3,
+    Rented = 4,
+    InProgress = 5,
+    InEnlistmentProcess = 8,
+    Frozen = 9,
+    FinishedExclusivity = 10
 }
 
 export enum CrmTaskSubType {
@@ -89,12 +116,6 @@ export enum NotificationScope {
     None = 0,
     User = 1,
     Project = 2
-}
-
-export enum PropertyCatalog {
-    Unknown = 0,
-    Repository = 1,
-    Agency = 2
 }
 
 export enum RealEstateMedia {

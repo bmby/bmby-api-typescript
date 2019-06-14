@@ -1,5 +1,5 @@
 import { BmbyEntity } from "./BmbyEntity";
-import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection } from "../Enumerations";
+import { PropertyCatalog, RealEstateMedia, DealType, RoommateGender, WindDirection, BrokerageStatus, EntryDateMode } from "../Enumerations";
 import { Contact } from "./Contact";
 import { ListItem } from "./ListItem";
 import { Image } from "./Image";
@@ -62,6 +62,10 @@ export class Property extends BmbyEntity {
             'bmby_broker_id': 0,
             'is_published': false,
             'is_exclusive': false,
+            'exclusivity_date': '',
+            'entry_date': '',
+            'entry_date_mode': EntryDateMode.Unknown,
+            'brokerage_status': BrokerageStatus.Unknown,
             'parser_record_id': 0,
             'media': RealEstateMedia.Unknown,
             'property_media_id': 0,
@@ -216,7 +220,14 @@ export class Property extends BmbyEntity {
     set catalog(value: PropertyCatalog) {
         this._data['catalog'] = value;
     }
-        
+    
+    get brokerageStatus(): BrokerageStatus {
+        return this._data['brokerage_status'];
+    }
+    set brokerageStatus(value: BrokerageStatus) {
+        this._data['brokerage_status'] = value;
+    }
+            
     get title(): string {
         return this._data['title'];
     }
@@ -488,6 +499,27 @@ export class Property extends BmbyEntity {
     }
     set creationTime(value: Date) {
         this._data['creation_time'] = value;
+    }
+
+    get exclusivityDate(): Date {
+        return this._data['exclusivity_date'];
+    }
+    set exclusivityDate(value: Date) {
+        this._data['exclusivity_date'] = value;
+    }
+
+    get entryDate(): Date {
+        return this._data['entry_date'];
+    }
+    set entryDate(value: Date) {
+        this._data['entry_date'] = value;
+    }
+        
+    get entryDateMode(): EntryDateMode {
+        return this._data['entry_date_mode'];
+    }
+    set entryDateMode(value: EntryDateMode) {
+        this._data['entry_date_mode'] = value;
     }
 
     getOptions(dictionary?: any, icons?: any): Array<ListItem> {
