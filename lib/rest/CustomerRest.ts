@@ -10,6 +10,7 @@ import { ContactQueryParams } from '../querystrings/ContactQueryParams';
 import { PropertyQueryParams } from '../querystrings/PropertyQueryParams';
 import { CustomerProperty } from '../entities/CustomerProperty';
 import { Property } from '../entities/Property';
+import { CustomerSummary } from '../entities/CustomerSummary';
 
 export class CustomerRest extends BmbyRest {
     listCustomers(params: QueryParams): Promise<PaginatedList<Customer>> {
@@ -194,6 +195,27 @@ export class CustomerRest extends BmbyRest {
             .then(function(response) {
                 try {
                     let customer = new Customer();
+                    customer.data = response.data;
+
+                    resolve(customer);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
+
+    customerSummary(customerId: string): Promise<CustomerSummary> {
+        let result = this.get("/customers/summary/" + customerId, true);
+
+        return new Promise<CustomerSummary>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let customer = new CustomerSummary();
                     customer.data = response.data;
 
                     resolve(customer);

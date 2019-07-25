@@ -93,14 +93,14 @@ export class UserRest extends BmbyRest {
     }
 
     setEventAsDone(eventId: string): Promise<BmbyHttpResponse> {
-        return this.put("users/timeline/done", { "event_id": eventId, "snooze_time": null }, true);
+        return this.patch("/users/timeline/done", { "event_id": eventId, "snooze_time": null }, true);
     }
 
     setEventAsDismissed(eventId: string): Promise<BmbyHttpResponse> {
-        return this.put("users/timeline/dismiss", { "event_id": eventId, "snooze_time": null }, true);
+        return this.patch("/users/timeline/dismiss", { "event_id": eventId, "snooze_time": null }, true);
     }
 
     snoozeEvent(eventId: string, snoozeDate: Date): Promise<BmbyHttpResponse> {
-        return this.put("users/timeline/snooze", { "event_id": eventId, "snooze_time": null }, true);
+        return this.patch("/users/timeline/snooze", { "event_id": eventId, "snooze_time": snoozeDate }, true);
     }
 }

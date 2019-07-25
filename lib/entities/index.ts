@@ -14,3 +14,5 @@ export * from './CustomerProperty';
 export * from './NotificationSetting';
 export * from './TimeLineEvent';
 export * from './PortalId';
+export * from './PropertySummary';
+export * from './CustomerSummary';

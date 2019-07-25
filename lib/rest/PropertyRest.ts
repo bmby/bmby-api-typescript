@@ -6,6 +6,7 @@ import { PaginatedList } from '../PaginatedList';
 import { PropertyTypeCategory } from '../Enumerations';
 import { ListItem } from '../entities/ListItem';
 import { PropertyQueryParams } from '../querystrings/PropertyQueryParams';
+import { PropertySummary } from '../entities/PropertySummary';
 
 export class PropertyRest extends BmbyRest {
     listPropertiyTypes(languageCode: string, category?: PropertyTypeCategory): Promise<Array<ListItem>> {
@@ -219,4 +220,24 @@ export class PropertyRest extends BmbyRest {
         });
     }
 
+    propertySummary(propertyId: string): Promise<PropertySummary> {
+        let result = this.get("/properties/summary/" + propertyId, true);
+
+        return new Promise<PropertySummary>((resolve, reject) => {
+            result
+            .then(function(response) {
+                try {
+                    let customer = new PropertySummary();
+                    customer.data = response.data;
+
+                    resolve(customer);
+                } catch(ex) {
+                    reject(response);
+                }
+            })
+            .catch(function(response){
+                reject(response);
+            });
+        });
+    }
 }

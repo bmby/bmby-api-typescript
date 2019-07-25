@@ -12,7 +12,8 @@ export class TimeLineEvent extends BmbyEntity {
             'description': '',
             'done': false,
             'dismissed': false,
-            'user_id': 0
+            'user_id': 0,
+            
         }
     }
 
