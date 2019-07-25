@@ -13,6 +13,7 @@ export class PropertySummary extends BmbyEntity {
         this._data = {
             'property_id': '',
             'matches': 0,
+            'potential_matches': 0,
             'last_crm': null,
             'related_customers': 0,
             'related_properties': 0,
@@ -52,6 +53,10 @@ export class PropertySummary extends BmbyEntity {
 
     get matches(): number {
         return this._data['matches'];
+    }
+
+    get potentialMatches(): number {
+        return this._data['potential_matches'];
     }
 
     get relatedCustomers(): number {
