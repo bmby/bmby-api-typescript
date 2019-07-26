@@ -228,7 +228,7 @@ export class PropertyRest extends BmbyRest {
             .then(function(response) {
                 try {
                     let summary = new PropertySummary();
-                    summary.data = summary.data;
+                    summary.data = response.data;
 
                     resolve(summary);
                 } catch(ex) {
