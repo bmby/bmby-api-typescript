@@ -11,6 +11,10 @@ export class CustomerSummary extends BmbyEntity {
     constructor() {
         super();
 
+        this._contact = new Contact();
+        this._lastCrm = new CrmTask();
+        this._query = new Query();
+
         this._data = {
             'customer_id': '',
             'matches': 0,

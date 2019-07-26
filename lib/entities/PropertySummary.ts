@@ -6,9 +6,11 @@ export class PropertySummary extends BmbyEntity {
     private _property: Property;
     private _lastCrm: CrmTask;
 
-
     constructor() {
         super();
+
+        this._property = new Property();
+        this._lastCrm = new CrmTask();
 
         this._data = {
             'property_id': '',
