@@ -52,6 +52,14 @@ export class CustomerSummary extends BmbyEntity {
         this._data = value;
     }
 
+    get data(): any {
+        this._data['query'] = this._query.data;
+        this._data['last_crm'] = this._lastCrm.data;
+        this._data['contact'] = this._contact.data;
+
+        return this._data;
+    }
+
     get id(): string {
         return this._data['customer_id'];
     }

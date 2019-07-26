@@ -41,6 +41,13 @@ export class PropertySummary extends BmbyEntity {
         this._data = value;
     }
 
+    get data(): any {
+        this._data['property'] = this._property.data;
+        this._data['last_crm'] = this._lastCrm.data;
+
+        return this._data;
+    }
+
     get id(): string {
         return this._data['property_id'];
     }
