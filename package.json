@@ -1,6 +1,6 @@
 {
   "name": "@bmby/bmby-api-typescript",
-  "version": "1.8.5",
+  "version": "1.8.6",
   "description": "Typescript library for BMBY API",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/bmby/bmby-api-typescript#readme",
   "devDependencies": {
     "@types/core-js": "^0.9.46",
-    "@types/node": "^9.6.41",
+    "@types/node": "^9.6.50",
     "axios": "^0.16.2",
     "base-64": "^0.1.0",
     "gulp": "^3.9.1",

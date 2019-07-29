@@ -72,6 +72,10 @@ export class CustomerSummary extends BmbyEntity {
         return this._lastCrm;
     }
 
+    get query(): Query {
+        return this._query;
+    }
+
     get matches(): number {
         return this._data['matches'];
     }
