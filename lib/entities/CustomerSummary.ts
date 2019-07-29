@@ -64,7 +64,7 @@ export class CustomerSummary extends BmbyEntity {
         return this._data['customer_id'];
     }
 
-    get property(): Contact {
+    get contact(): Contact {
         return this._contact;
     }
 
