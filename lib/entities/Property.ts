@@ -305,6 +305,12 @@ export class Property extends BmbyEntity {
     }
         
     get dealType(): DealType {
+        let val: string = this._data['deal_type'];
+
+        if (isNaN(Number(val))) {
+            return DealType[val];
+        }
+
         return this._data['deal_type'];
     }
     set dealType(value: DealType) {
