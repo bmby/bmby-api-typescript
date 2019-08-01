@@ -13,7 +13,12 @@ export class TimeLineEvent extends BmbyEntity {
             'done': false,
             'dismissed': false,
             'user_id': 0,
-            
+            'customer_id': null,
+            'agency_id': null,
+            'related_entity_id': null,
+            'is_automatic_event': false,
+            'phone': '',
+            'action_title': ''
         }
     }
 
@@ -45,11 +50,32 @@ export class TimeLineEvent extends BmbyEntity {
         return this._data['title'];
     }
 
+    set phone(value: string) {
+        this._data['phone'] = value;
+    }
+    get phone(): string {
+        return this._data['phone'];
+    }
+
+    set actionTitle(value: string) {
+        this._data['action_title'] = value;
+    }
+    get actionTitle(): string {
+        return this._data['action_title'];
+    }
+
     set description(value: string) {
         this._data['description'] = value;
     }
     get description(): string {
         return this._data['description'];
+    }
+
+    get isAutomaticEvent(): boolean {
+        return this._data['is_automatic_event'];
+    }
+    set isAutomaticEvent(value: boolean) {
+        this._data['is_automatic_event'] = value
     }
 
     get done(): boolean {
@@ -72,4 +98,26 @@ export class TimeLineEvent extends BmbyEntity {
     set userId(value: number) {
         this._data['user_id'] = value
     }
+
+    get customerId(): string {
+        return this._data['customer_id'];
+    }
+    set customerId(value: string) {
+        this._data['customer_id'] = value
+    }
+
+    get agencyId(): string {
+        return this._data['agency_id'];
+    }
+    set agencyId(value: string) {
+        this._data['agency_id'] = value
+    }
+
+    get relatedEntityId(): string {
+        return this._data['related_entity_id'];
+    }
+    set relatedEntityId(value: string) {
+        this._data['related_entity_id'] = value
+    }
+
 }
